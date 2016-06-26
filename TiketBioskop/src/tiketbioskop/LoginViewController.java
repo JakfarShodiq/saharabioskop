@@ -174,18 +174,18 @@ public class LoginViewController extends javax.swing.JFrame {
                     new DashboardViewController().show();
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Password Salah");
+                    JOptionPane.showMessageDialog(rootPane, "Wrong Password");
                     jPasswordField1.setText("");
                     jPasswordField1.requestFocus();
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Username Salah");
+                JOptionPane.showMessageDialog(rootPane, "Wrong Username");
                 jTextField1.setText("");
                 jPasswordField1.setText("");
                 jTextField1.requestFocus();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Cek Ulang");
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
