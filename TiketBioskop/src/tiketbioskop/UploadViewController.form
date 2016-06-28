@@ -75,7 +75,7 @@
                           <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jTextField2" min="-2" pref="182" max="-2" attributes="0"/>
+                          <Component id="idUpload" min="-2" pref="182" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -88,7 +88,7 @@
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="44" max="32767" attributes="0"/>
-                  <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="idUpload" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -143,7 +143,10 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="idUpload">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

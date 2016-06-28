@@ -138,14 +138,18 @@ public class BuyTicketViewController extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jComboBox1, 0, 280, Short.MAX_VALUE)
-                        .addComponent(jTextField1)
-                        .addComponent(jTextField3)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox1, 0, 280, Short.MAX_VALUE)
+                                .addComponent(jTextField1)
+                                .addComponent(jTextField3)
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(76, 76, 76))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(89, 89, 89))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -253,12 +257,20 @@ public class BuyTicketViewController extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(BuyTicketViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+                
+        UploadViewController UploadVC = null;
+        try {
+            UploadVC = new UploadViewController();
+        } catch (SQLException ex) {
+            Logger.getLogger(BuyTicketViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        UploadViewController.idUpload.setText(this.id_transaksi);
+        UploadVC.setVisible(true);     
+        
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public String id_new_trans(){
-        return id_transaksi;
-    }
     
     /**
      * @param args the command line arguments

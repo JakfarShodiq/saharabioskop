@@ -17,23 +17,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Report"/>
           </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Daily Report"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Monthly Report"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Annual Report"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
+          <Events>
+            <EventHandler event="menuSelected" listener="javax.swing.event.MenuListener" parameters="javax.swing.event.MenuEvent" handler="jMenu2MenuSelected"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

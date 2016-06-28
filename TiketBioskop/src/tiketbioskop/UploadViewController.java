@@ -49,6 +49,9 @@ public class UploadViewController extends javax.swing.JFrame {
         KoneksiViewController connection = new KoneksiViewController();
         connection.getKoneksi();
         stat = connection.getKoneksi().createStatement();
+        
+        idUpload.hide();
+        jTextField1.requestFocus();
     }
     
 
@@ -67,7 +70,7 @@ public class UploadViewController extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        idUpload = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,7 +126,7 @@ public class UploadViewController extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(190, 190, 190))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(idUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(97, 97, 97))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -132,7 +135,7 @@ public class UploadViewController extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(idUpload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -192,11 +195,13 @@ public class UploadViewController extends javax.swing.JFrame {
         //System.out.println(dateFormat.format(date));
         
         try {
-            new CopyFileViewController(jTextField1.getText(), gambar(jTextField2.getText()));
+            new CopyFileViewController(jTextField1.getText(), gambar(idUpload.getText()));
             //stat.executeQuery("Insert into tb_konfirmasi (id_transaksi, date, filename) values('1', '" + dateFormat.format(date) + "','" + jTextField1.getText() + "')");
             stat.executeUpdate("Insert into tb_konfirmasi (id_transaksi, date) values('2', '" + dateFormat.format(date) + "')");
             JOptionPane.showMessageDialog(rootPane, "Upload Success");
             jTextField1.setText("");
+            new DashboardViewController().show();
+            this.dispose();
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
@@ -243,12 +248,12 @@ public class UploadViewController extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField idUpload;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
