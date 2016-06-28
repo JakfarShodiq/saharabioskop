@@ -5,17 +5,218 @@
  */
 package tiketbioskop;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import java.awt.HeadlessException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author JAKFAR
  */
 public class SeatViewController extends javax.swing.JFrame {
 
+    private ResultSet res;
+    private final Statement stat;
+    private final Connection con;
+
     /**
      * Creates new form SeatViewController
      */
-    public SeatViewController() {
+    public SeatViewController() throws SQLException {
         initComponents();
+        this.setTitle("Sahara Bioskop");
+        this.setLocationRelativeTo(null);
+        KoneksiViewController connection = new KoneksiViewController();
+        connection.getKoneksi();
+        stat = connection.getKoneksi().createStatement();
+        con = (Connection) connection.getKoneksi();
+        res = stat.executeQuery("select * from tb_det_transaksi where id_transaksi = '" + 1 + "'");
+        try {
+            // TODO add your handling code here:
+
+            // Hanlde checkbox status
+            while (res.next()) {
+                // Retrive by coloumn name
+                int idTransaksi = res.getInt("id_transaksi");
+                String noKursi = res.getString("no_kursi");
+
+                switch (noKursi) {
+                    // Seat A
+                    case "A1":
+                        A1.setSelected(true);
+                        A1.setEnabled(false);
+                        break;
+                    case "A2":
+                        A2.setSelected(true);
+                        A2.setEnabled(false);
+                        break;
+                    case "A3":
+                        A3.setSelected(true);
+                        A3.setEnabled(false);
+                        break;
+                    case "A4":
+                        A4.setSelected(true);
+                        A4.setEnabled(false);
+                        break;
+                    case "A7":
+                        A7.setSelected(true);
+                        A7.setEnabled(false);
+                        break;
+                    case "A8":
+                        A8.setSelected(true);
+                        A8.setEnabled(false);
+                        break;
+                    case "A9":
+                        A9.setSelected(true);
+                        A9.setEnabled(false);
+                        break;
+                    case "A10":
+                        A10.setSelected(true);
+                        A10.setEnabled(false);
+                        break;
+                    // End seat A
+
+                    // Seat B
+                    case "B1":
+                        B1.setSelected(true);
+                        B1.setEnabled(false);
+                        break;
+                    case "B2":
+                        B2.setSelected(true);
+                        B2.setEnabled(false);
+                        break;
+                    case "B3":
+                        B3.setSelected(true);
+                        B3.setEnabled(false);
+                        break;
+                    case "B4":
+                        B4.setSelected(true);
+                        B4.setEnabled(false);
+                        break;
+                    case "B7":
+                        B7.setSelected(true);
+                        B7.setEnabled(false);
+                        break;
+                    case "B8":
+                        B8.setSelected(true);
+                        B8.setEnabled(false);
+                        break;
+                    case "B9":
+                        B9.setSelected(true);
+                        B9.setEnabled(false);
+                        break;
+                    case "B10":
+                        B10.setSelected(true);
+                        B10.setEnabled(false);
+                        break;
+                    // End seat B
+
+                    // Start Seat C
+                    case "C1":
+                        C1.setSelected(true);
+                        C1.setEnabled(false);
+                        break;
+                    case "C2":
+                        C2.setSelected(true);
+                        C2.setEnabled(false);
+                        break;
+                    case "C3":
+                        C3.setSelected(true);
+                        C3.setEnabled(false);
+                        break;
+                    case "C4":
+                        C4.setSelected(true);
+                        C4.setEnabled(false);
+                        break;
+                    case "C5":
+                        C5.setSelected(true);
+                        C5.setEnabled(false);
+                        break;
+                    case "C6":
+                        C6.setSelected(true);
+                        C6.setEnabled(false);
+                        break;
+                    case "C7":
+                        C7.setSelected(true);
+                        C7.setEnabled(false);
+                        break;
+                    case "C8":
+                        C8.setSelected(true);
+                        C8.setEnabled(false);
+                        break;
+                    case "C9":
+                        C9.setSelected(true);
+                        C9.setEnabled(false);
+                        break;
+                    case "C10":
+                        C10.setSelected(true);
+                        C10.setEnabled(false);
+                        break;
+                    // End Seat C
+
+                    // Start Seat D
+                    case "D1":
+                        D1.setSelected(true);
+                        D1.setEnabled(false);
+                        break;
+                    case "D2":
+                        D2.setSelected(true);
+                        D2.setEnabled(false);
+                        break;
+                    case "D3":
+                        D3.setSelected(true);
+                        D3.setEnabled(false);
+                        break;
+                    case "D4":
+                        D4.setSelected(true);
+                        D4.setEnabled(false);
+                        break;
+                    case "D5":
+                        D5.setSelected(true);
+                        D5.setEnabled(false);
+                        break;
+                    case "D6":
+                        D6.setSelected(true);
+                        D6.setEnabled(false);
+                        break;
+                    case "D7":
+                        D7.setSelected(true);
+                        D7.setEnabled(false);
+                        break;
+                    case "D8":
+                        D8.setSelected(true);
+                        D8.setEnabled(false);
+                        break;
+                    case "D9":
+                        D9.setSelected(true);
+                        D9.setEnabled(false);
+                        break;
+                    case "D10":
+                        D10.setSelected(true);
+                        D10.setEnabled(false);
+                        break;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SeatViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        id_film.setVisible(false);
+        id_studio.setVisible(false);
+        judul_film.setVisible(false);
+        nama_studio.setVisible(false);
+        jam_tayang.setVisible(false);
+        tanggal_tayang.setVisible(false);
+        total_bayar.setVisible(false);
+        jumlah_tiket.setVisible(false);
     }
 
     /**
@@ -30,51 +231,58 @@ public class SeatViewController extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox17 = new javax.swing.JCheckBox();
-        jCheckBox18 = new javax.swing.JCheckBox();
-        jCheckBox19 = new javax.swing.JCheckBox();
-        jCheckBox20 = new javax.swing.JCheckBox();
-        jCheckBox21 = new javax.swing.JCheckBox();
-        jCheckBox22 = new javax.swing.JCheckBox();
-        jCheckBox23 = new javax.swing.JCheckBox();
-        jCheckBox24 = new javax.swing.JCheckBox();
-        jCheckBox25 = new javax.swing.JCheckBox();
-        jCheckBox26 = new javax.swing.JCheckBox();
-        jCheckBox27 = new javax.swing.JCheckBox();
-        jCheckBox28 = new javax.swing.JCheckBox();
-        jCheckBox29 = new javax.swing.JCheckBox();
-        jCheckBox30 = new javax.swing.JCheckBox();
-        jCheckBox31 = new javax.swing.JCheckBox();
-        jCheckBox32 = new javax.swing.JCheckBox();
-        jCheckBox33 = new javax.swing.JCheckBox();
-        jCheckBox34 = new javax.swing.JCheckBox();
-        jCheckBox35 = new javax.swing.JCheckBox();
-        jCheckBox36 = new javax.swing.JCheckBox();
+        A1 = new javax.swing.JCheckBox();
+        B1 = new javax.swing.JCheckBox();
+        C1 = new javax.swing.JCheckBox();
+        D1 = new javax.swing.JCheckBox();
+        A2 = new javax.swing.JCheckBox();
+        B2 = new javax.swing.JCheckBox();
+        C2 = new javax.swing.JCheckBox();
+        D2 = new javax.swing.JCheckBox();
+        A3 = new javax.swing.JCheckBox();
+        C3 = new javax.swing.JCheckBox();
+        B3 = new javax.swing.JCheckBox();
+        D3 = new javax.swing.JCheckBox();
+        A4 = new javax.swing.JCheckBox();
+        B4 = new javax.swing.JCheckBox();
+        C4 = new javax.swing.JCheckBox();
+        D4 = new javax.swing.JCheckBox();
+        C5 = new javax.swing.JCheckBox();
+        D5 = new javax.swing.JCheckBox();
+        D6 = new javax.swing.JCheckBox();
+        C6 = new javax.swing.JCheckBox();
+        A7 = new javax.swing.JCheckBox();
+        B7 = new javax.swing.JCheckBox();
+        C7 = new javax.swing.JCheckBox();
+        D7 = new javax.swing.JCheckBox();
+        D8 = new javax.swing.JCheckBox();
+        C8 = new javax.swing.JCheckBox();
+        B8 = new javax.swing.JCheckBox();
+        A8 = new javax.swing.JCheckBox();
+        C9 = new javax.swing.JCheckBox();
+        B9 = new javax.swing.JCheckBox();
+        D9 = new javax.swing.JCheckBox();
+        A9 = new javax.swing.JCheckBox();
+        A10 = new javax.swing.JCheckBox();
+        B10 = new javax.swing.JCheckBox();
+        D10 = new javax.swing.JCheckBox();
+        C10 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        id_film = new javax.swing.JLabel();
+        judul_film = new javax.swing.JLabel();
+        id_studio = new javax.swing.JLabel();
+        jam_tayang = new javax.swing.JLabel();
+        nama_studio = new javax.swing.JLabel();
+        tanggal_tayang = new javax.swing.JLabel();
+        total_bayar = new javax.swing.JLabel();
+        jumlah_tiket = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 600));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Lucida Fax", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -88,413 +296,257 @@ public class SeatViewController extends javax.swing.JFrame {
         jLabel2.setText("LAYAR");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
 
-        jCheckBox1.setText("1");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        A1.setText("1");
+        A1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                A1ActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("1");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        B1.setText("1");
+        B1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                B1ActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("1");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        C1.setText("1");
+        C1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                C1ActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setText("1");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        D1.setText("1");
+        D1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                D1ActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setText("2");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        A2.setText("2");
+        A2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                A2ActionPerformed(evt);
             }
         });
 
-        jCheckBox6.setText("2");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+        B2.setText("2");
+        B2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
+                B2ActionPerformed(evt);
             }
         });
 
-        jCheckBox7.setText("2");
-        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+        C2.setText("2");
+        C2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
+                C2ActionPerformed(evt);
             }
         });
 
-        jCheckBox8.setText("2");
-        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+        D2.setText("2");
+        D2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox8ActionPerformed(evt);
+                D2ActionPerformed(evt);
             }
         });
 
-        jCheckBox9.setText("3");
-        jCheckBox9.addActionListener(new java.awt.event.ActionListener() {
+        A3.setText("3");
+        A3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox9ActionPerformed(evt);
+                A3ActionPerformed(evt);
             }
         });
 
-        jCheckBox10.setText("3");
-        jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
+        C3.setText("3");
+        C3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox10ActionPerformed(evt);
+                C3ActionPerformed(evt);
             }
         });
 
-        jCheckBox11.setText("3");
-        jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
+        B3.setText("3");
+        B3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox11ActionPerformed(evt);
+                B3ActionPerformed(evt);
             }
         });
 
-        jCheckBox12.setText("3");
-        jCheckBox12.addActionListener(new java.awt.event.ActionListener() {
+        D3.setText("3");
+        D3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox12ActionPerformed(evt);
+                D3ActionPerformed(evt);
             }
         });
 
-        jCheckBox13.setText("4");
-        jCheckBox13.addActionListener(new java.awt.event.ActionListener() {
+        A4.setText("4");
+        A4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox13ActionPerformed(evt);
+                A4ActionPerformed(evt);
             }
         });
 
-        jCheckBox14.setText("4");
-        jCheckBox14.addActionListener(new java.awt.event.ActionListener() {
+        B4.setText("4");
+        B4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox14ActionPerformed(evt);
+                B4ActionPerformed(evt);
             }
         });
 
-        jCheckBox15.setText("4");
-        jCheckBox15.addActionListener(new java.awt.event.ActionListener() {
+        C4.setText("4");
+        C4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox15ActionPerformed(evt);
+                C4ActionPerformed(evt);
             }
         });
 
-        jCheckBox16.setText("4");
-        jCheckBox16.addActionListener(new java.awt.event.ActionListener() {
+        D4.setText("4");
+        D4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox16ActionPerformed(evt);
+                D4ActionPerformed(evt);
             }
         });
 
-        jCheckBox17.setText("5");
-        jCheckBox17.addActionListener(new java.awt.event.ActionListener() {
+        C5.setText("5");
+        C5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox17ActionPerformed(evt);
+                C5ActionPerformed(evt);
             }
         });
 
-        jCheckBox18.setText("5");
-        jCheckBox18.addActionListener(new java.awt.event.ActionListener() {
+        D5.setText("5");
+        D5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox18ActionPerformed(evt);
+                D5ActionPerformed(evt);
             }
         });
 
-        jCheckBox19.setText("6");
-        jCheckBox19.addActionListener(new java.awt.event.ActionListener() {
+        D6.setText("6");
+        D6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox19ActionPerformed(evt);
+                D6ActionPerformed(evt);
             }
         });
 
-        jCheckBox20.setText("6");
-        jCheckBox20.addActionListener(new java.awt.event.ActionListener() {
+        C6.setText("6");
+        C6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox20ActionPerformed(evt);
+                C6ActionPerformed(evt);
             }
         });
 
-        jCheckBox21.setText("7");
-        jCheckBox21.addActionListener(new java.awt.event.ActionListener() {
+        A7.setText("7");
+        A7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox21ActionPerformed(evt);
+                A7ActionPerformed(evt);
             }
         });
 
-        jCheckBox22.setText("7");
-        jCheckBox22.addActionListener(new java.awt.event.ActionListener() {
+        B7.setText("7");
+        B7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox22ActionPerformed(evt);
+                B7ActionPerformed(evt);
             }
         });
 
-        jCheckBox23.setText("7");
-        jCheckBox23.addActionListener(new java.awt.event.ActionListener() {
+        C7.setText("7");
+        C7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox23ActionPerformed(evt);
+                C7ActionPerformed(evt);
             }
         });
 
-        jCheckBox24.setText("7");
-        jCheckBox24.addActionListener(new java.awt.event.ActionListener() {
+        D7.setText("7");
+        D7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox24ActionPerformed(evt);
+                D7ActionPerformed(evt);
             }
         });
 
-        jCheckBox25.setText("8");
-        jCheckBox25.addActionListener(new java.awt.event.ActionListener() {
+        D8.setText("8");
+        D8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox25ActionPerformed(evt);
+                D8ActionPerformed(evt);
             }
         });
 
-        jCheckBox26.setText("8");
-        jCheckBox26.addActionListener(new java.awt.event.ActionListener() {
+        C8.setText("8");
+        C8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox26ActionPerformed(evt);
+                C8ActionPerformed(evt);
             }
         });
 
-        jCheckBox27.setText("8");
-        jCheckBox27.addActionListener(new java.awt.event.ActionListener() {
+        B8.setText("8");
+        B8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox27ActionPerformed(evt);
+                B8ActionPerformed(evt);
             }
         });
 
-        jCheckBox28.setText("8");
-        jCheckBox28.addActionListener(new java.awt.event.ActionListener() {
+        A8.setText("8");
+        A8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox28ActionPerformed(evt);
+                A8ActionPerformed(evt);
             }
         });
 
-        jCheckBox29.setText("9");
-        jCheckBox29.addActionListener(new java.awt.event.ActionListener() {
+        C9.setText("9");
+        C9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox29ActionPerformed(evt);
+                C9ActionPerformed(evt);
             }
         });
 
-        jCheckBox30.setText("9");
-        jCheckBox30.addActionListener(new java.awt.event.ActionListener() {
+        B9.setText("9");
+        B9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox30ActionPerformed(evt);
+                B9ActionPerformed(evt);
             }
         });
 
-        jCheckBox31.setText("9");
-        jCheckBox31.addActionListener(new java.awt.event.ActionListener() {
+        D9.setText("9");
+        D9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox31ActionPerformed(evt);
+                D9ActionPerformed(evt);
             }
         });
 
-        jCheckBox32.setText("9");
-        jCheckBox32.addActionListener(new java.awt.event.ActionListener() {
+        A9.setText("9");
+        A9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox32ActionPerformed(evt);
+                A9ActionPerformed(evt);
             }
         });
 
-        jCheckBox33.setText("10");
-        jCheckBox33.addActionListener(new java.awt.event.ActionListener() {
+        A10.setText("10");
+        A10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox33ActionPerformed(evt);
+                A10ActionPerformed(evt);
             }
         });
 
-        jCheckBox34.setText("10");
-        jCheckBox34.addActionListener(new java.awt.event.ActionListener() {
+        B10.setText("10");
+        B10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox34ActionPerformed(evt);
+                B10ActionPerformed(evt);
             }
         });
 
-        jCheckBox35.setText("10");
-        jCheckBox35.addActionListener(new java.awt.event.ActionListener() {
+        D10.setText("10");
+        D10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox35ActionPerformed(evt);
+                D10ActionPerformed(evt);
             }
         });
 
-        jCheckBox36.setText("10");
-        jCheckBox36.addActionListener(new java.awt.event.ActionListener() {
+        C10.setText("10");
+        C10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox36ActionPerformed(evt);
+                C10ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox5)
-                            .addComponent(jCheckBox6)
-                            .addComponent(jCheckBox7)
-                            .addComponent(jCheckBox8))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox9)
-                            .addComponent(jCheckBox11)
-                            .addComponent(jCheckBox10)
-                            .addComponent(jCheckBox12))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox13)
-                            .addComponent(jCheckBox14)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox15)
-                                    .addComponent(jCheckBox16))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox17)
-                                    .addComponent(jCheckBox18))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox20)
-                                    .addComponent(jCheckBox19))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox21)
-                            .addComponent(jCheckBox22)
-                            .addComponent(jCheckBox23)
-                            .addComponent(jCheckBox24))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox28)
-                            .addComponent(jCheckBox27)
-                            .addComponent(jCheckBox26)
-                            .addComponent(jCheckBox25))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox32)
-                            .addComponent(jCheckBox30)
-                            .addComponent(jCheckBox29)
-                            .addComponent(jCheckBox31))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox33)
-                            .addComponent(jCheckBox34)
-                            .addComponent(jCheckBox36)
-                            .addComponent(jCheckBox35))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox4))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox8)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox12))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jCheckBox15)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBox16))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jCheckBox17)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBox18))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jCheckBox20)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBox19)))))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jCheckBox21)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jCheckBox22)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jCheckBox23)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jCheckBox24)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox28)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox25))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox32)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox29)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox31))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox33)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox34)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox36)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox35)))
-                .addContainerGap(59, Short.MAX_VALUE))
-        );
 
         jLabel3.setText("A");
 
@@ -504,213 +556,688 @@ public class SeatViewController extends javax.swing.JFrame {
 
         jLabel6.setText("D");
 
-        jButton1.setText("Proses");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(A1)
+                            .addComponent(B1)
+                            .addComponent(C1)
+                            .addComponent(D1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(A2)
+                            .addComponent(B2)
+                            .addComponent(C2)
+                            .addComponent(D2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(A3)
+                            .addComponent(B3)
+                            .addComponent(C3)
+                            .addComponent(D3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(A4)
+                            .addComponent(B4)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(C4)
+                                    .addComponent(D4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(C5)
+                                    .addComponent(D5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(C6)
+                                    .addComponent(D6))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(A7)
+                            .addComponent(B7)
+                            .addComponent(C7)
+                            .addComponent(D7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(A8)
+                            .addComponent(B8)
+                            .addComponent(C8)
+                            .addComponent(D8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(A9)
+                            .addComponent(B9)
+                            .addComponent(C9)
+                            .addComponent(D9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(A10)
+                            .addComponent(B10)
+                            .addComponent(C10)
+                            .addComponent(D10))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(A1)
+                                        .addComponent(jLabel3))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(B1)
+                                        .addComponent(jLabel4))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(C1)
+                                        .addComponent(jLabel5))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(D1)
+                                        .addComponent(jLabel6)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(A2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(B2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(C2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(D2)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(A3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(B3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(C3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(D3))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(A4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(B4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(C4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(D4))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(C5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(D5))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(C6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(D6)))))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(A7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(B7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(C7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(D7)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(A8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(B8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(C8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(D8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(A9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(B9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(C9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(D9))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(A10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(B10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(C10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(D10)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
 
-        jButton2.setText("Kembali");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Proses");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
+
+        id_film.setText("2");
+
+        judul_film.setText("Iron Man");
+
+        id_studio.setText("1");
+
+        jam_tayang.setText("18:30");
+
+        nama_studio.setText("Studio 4");
+
+        tanggal_tayang.setText("01-07-2016 ");
+
+        total_bayar.setText("100000");
+
+        jumlah_tiket.setText("5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                        .addComponent(id_film)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))
-                        .addGap(0, 26, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(judul_film)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(id_studio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nama_studio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jam_tayang)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tanggal_tayang)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(total_bayar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jumlah_tiket)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(30, 30, 30))
+                    .addComponent(id_film)
+                    .addComponent(judul_film)
+                    .addComponent(id_studio)
+                    .addComponent(jam_tayang)
+                    .addComponent(nama_studio)
+                    .addComponent(tanggal_tayang)
+                    .addComponent(total_bayar)
+                    .addComponent(jumlah_tiket))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+        try {
+            con.setAutoCommit(false);
+            String insertIntoTable = "INSERT INTO `tb_det_transaksi` (`id_transaksi`, `no_kursi`) VALUES (?, ?)";
+            PreparedStatement pstmt = (PreparedStatement) con.prepareStatement(insertIntoTable);
+            DefaultListModel listModel = new DefaultListModel();
+            
+            // Start Seat A
+            if (A1.isSelected() && A1.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "A1");
+                pstmt.addBatch();
+                listModel.addElement("A1");
+            }
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+            if (A2.isSelected() && A2.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "A2");
+                pstmt.addBatch();
+                listModel.addElement("A2");
+            }
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+            if (A3.isSelected() && A3.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "A3");
+                pstmt.addBatch();
+                listModel.addElement("A3");
+            }
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+            if (A4.isSelected() && A4.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "A4");
+                pstmt.addBatch();
+                listModel.addElement("A4");
+            }
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+            if (A7.isSelected() && A7.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "A7");
+                pstmt.addBatch();
+                listModel.addElement("A7");
+            }
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
+            if (A8.isSelected() && A8.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "A8");
+                pstmt.addBatch();
+                listModel.addElement("A8");
+            }
 
-    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox7ActionPerformed
+            if (A9.isSelected() && A9.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "A9");
+                pstmt.addBatch();
+                listModel.addElement("A9");
+            }
 
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
+            if (A10.isSelected() && A10.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "A10");
+                pstmt.addBatch();
+                listModel.addElement("A10");
+            }
 
-    private void jCheckBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox9ActionPerformed
+            // Start Seat B
+            if (B1.isSelected() && B1.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "B1");
+                pstmt.addBatch();
+                listModel.addElement("B1");
+            }
 
-    private void jCheckBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox10ActionPerformed
+            if (B2.isSelected() && B2.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "B2");
+                pstmt.addBatch();
+                listModel.addElement("B2");
+            }
 
-    private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox11ActionPerformed
+            if (B3.isSelected() && B3.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "B3");
+                pstmt.addBatch();
+                listModel.addElement("B3");
+            }
 
-    private void jCheckBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox12ActionPerformed
+            if (B4.isSelected() && B4.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "B4");
+                pstmt.addBatch();
+                listModel.addElement("B4");
+            }
 
-    private void jCheckBox13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox13ActionPerformed
+            if (B7.isSelected() && B7.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "B7");
+                pstmt.addBatch();
+                listModel.addElement("B7");
+            }
 
-    private void jCheckBox14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox14ActionPerformed
+            if (B8.isSelected() && B8.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "B8");
+                pstmt.addBatch();
+                listModel.addElement("B8");
+            }
 
-    private void jCheckBox15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox15ActionPerformed
+            if (B9.isSelected() && B9.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "B9");
+                pstmt.addBatch();
+                listModel.addElement("B9");
+            }
 
-    private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox16ActionPerformed
+            if (B10.isSelected() && B10.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "B10");
+                pstmt.addBatch();
+                listModel.addElement("B10");
+            }
 
-    private void jCheckBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox17ActionPerformed
+            // Start Seat C
+            if (C1.isSelected() && C1.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C1");
+                pstmt.addBatch();
+                listModel.addElement("C1");
+            }
 
-    private void jCheckBox18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox18ActionPerformed
+            if (C2.isSelected() && C2.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C2");
+                pstmt.addBatch();
+                listModel.addElement("C2");
+            }
 
-    private void jCheckBox19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox19ActionPerformed
+            if (C3.isSelected() && C3.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C3");
+                pstmt.addBatch();
+                listModel.addElement("C3");
+            }
 
-    private void jCheckBox20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox20ActionPerformed
+            if (C4.isSelected() && C4.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C4");
+                pstmt.addBatch();
+                listModel.addElement("C4");
+            }
 
-    private void jCheckBox21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox21ActionPerformed
+            if (C5.isSelected() && C5.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C5");
+                pstmt.addBatch();
+                listModel.addElement("C5");
+            }
 
-    private void jCheckBox22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox22ActionPerformed
+            if (C6.isSelected() && C6.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C6");
+                pstmt.addBatch();
+                listModel.addElement("C6");
+            }
 
-    private void jCheckBox23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox23ActionPerformed
+            if (C7.isSelected() && C7.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C7");
+                pstmt.addBatch();
+                listModel.addElement("C7");
+            }
 
-    private void jCheckBox24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox24ActionPerformed
+            if (C8.isSelected() && C8.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C8");
+                pstmt.addBatch();
+                listModel.addElement("C8");
+            }
 
-    private void jCheckBox25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox25ActionPerformed
+            if (C9.isSelected() && C9.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C9");
+                pstmt.addBatch();
+                listModel.addElement("C9");
+            }
 
-    private void jCheckBox26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox26ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox26ActionPerformed
+            if (C10.isSelected() && C10.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "C10");
+                pstmt.addBatch();
+                listModel.addElement("C10");
+            }
 
-    private void jCheckBox27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox27ActionPerformed
+            // Start Seat D
+            if (D1.isSelected() && D1.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D1");
+                pstmt.addBatch();
+                listModel.addElement("D1");
+            }
 
-    private void jCheckBox28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox28ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox28ActionPerformed
+            if (D2.isSelected() && D2.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D2");
+                pstmt.addBatch();
+                listModel.addElement("D2");
+            }
 
-    private void jCheckBox29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox29ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox29ActionPerformed
+            if (D3.isSelected() && D3.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D3");
+                pstmt.addBatch();
+                listModel.addElement("D3");
+            }
 
-    private void jCheckBox30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox30ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox30ActionPerformed
+            if (D4.isSelected() && D4.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D4");
+                pstmt.addBatch();
+                listModel.addElement("D4");
+            }
 
-    private void jCheckBox31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox31ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox31ActionPerformed
+            if (D5.isSelected() && D5.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D5");
+                pstmt.addBatch();
+                listModel.addElement("D5");
+            }
 
-    private void jCheckBox32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox32ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox32ActionPerformed
+            if (D6.isSelected() && D6.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D6");
+                pstmt.addBatch();
+                listModel.addElement("D6");
+            }
 
-    private void jCheckBox33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox33ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox33ActionPerformed
+            if (D7.isSelected() && D7.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D7");
+                pstmt.addBatch();
+                listModel.addElement("D7");
+            }
 
-    private void jCheckBox34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox34ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox34ActionPerformed
+            if (D8.isSelected() && D8.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D8");
+                pstmt.addBatch();
+                listModel.addElement("D8");
+            }
 
-    private void jCheckBox35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox35ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox35ActionPerformed
+            if (D9.isSelected() && D9.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D9");
+                pstmt.addBatch();
+                listModel.addElement("D9");
+            }
 
-    private void jCheckBox36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox36ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox36ActionPerformed
+            if (D10.isSelected() && D10.isEnabled()) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, "D10");
+                pstmt.addBatch();
+                listModel.addElement("D10");
+            }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            int[] updateCounts = pstmt.executeBatch();
+            con.commit();
+            con.setAutoCommit(true);
+
+            JOptionPane.showMessageDialog(null, "Pilihan tempat duduk berhasil disimpan!");
+
+            // Passing value to DetailTransaksiViewController
+            DetailTransaksiViewController DetailTransaksiVC = new DetailTransaksiViewController();
+            DetailTransaksiVC.judulFilm.setText(this.judul_film.getText());
+            DetailTransaksiVC.namaStudio.setText(this.nama_studio.getText());
+            DetailTransaksiVC.tanggalTayang.setText(this.tanggal_tayang.getText());
+            DetailTransaksiVC.jamTayang.setText(this.jam_tayang.getText());
+            DetailTransaksiVC.jumlahTiket.setText(this.jumlah_tiket.getText());
+            DetailTransaksiVC.totalBayar.setText(this.total_bayar.getText());
+            DetailTransaksiVC.detailKursi.setModel(listModel);
+            DetailTransaksiVC.setVisible(true);
+            this.dispose();
+
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Pilihan tempat duduk berhasil gagal disimpan!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void C10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_C10ActionPerformed
+
+    private void D10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D10ActionPerformed
+
+    private void B10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B10ActionPerformed
+
+    private void A10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_A10ActionPerformed
+
+    private void A9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_A9ActionPerformed
+
+    private void D9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D9ActionPerformed
+
+    private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B9ActionPerformed
+
+    private void C9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C9ActionPerformed
+
+    private void A8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_A8ActionPerformed
+
+    private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B8ActionPerformed
+
+    private void C8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C8ActionPerformed
+
+    private void D8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D8ActionPerformed
+
+    private void D7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D7ActionPerformed
+
+    private void C7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C7ActionPerformed
+
+    private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B7ActionPerformed
+
+    private void A7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_A7ActionPerformed
+
+    private void C6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C6ActionPerformed
+
+    private void D6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D6ActionPerformed
+
+    private void D5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D5ActionPerformed
+
+    private void C5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C5ActionPerformed
+
+    private void D4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D4ActionPerformed
+
+    private void C4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C4ActionPerformed
+
+    private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B4ActionPerformed
+
+    private void A4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_A4ActionPerformed
+
+    private void D3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D3ActionPerformed
+
+    private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B3ActionPerformed
+
+    private void C3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C3ActionPerformed
+
+    private void A3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_A3ActionPerformed
+
+    private void D2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D2ActionPerformed
+
+    private void C2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C2ActionPerformed
+
+    private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B2ActionPerformed
+
+    private void A2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_A2ActionPerformed
+
+    private void D1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D1ActionPerformed
+
+    private void C1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C1ActionPerformed
+
+    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B1ActionPerformed
+
+    private void A1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A1ActionPerformed
+
+    }//GEN-LAST:event_A1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -742,50 +1269,55 @@ public class SeatViewController extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SeatViewController().setVisible(true);
+                try {
+                    new SeatViewController().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SeatViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox A1;
+    private javax.swing.JCheckBox A10;
+    private javax.swing.JCheckBox A2;
+    private javax.swing.JCheckBox A3;
+    private javax.swing.JCheckBox A4;
+    private javax.swing.JCheckBox A7;
+    private javax.swing.JCheckBox A8;
+    private javax.swing.JCheckBox A9;
+    private javax.swing.JCheckBox B1;
+    private javax.swing.JCheckBox B10;
+    private javax.swing.JCheckBox B2;
+    private javax.swing.JCheckBox B3;
+    private javax.swing.JCheckBox B4;
+    private javax.swing.JCheckBox B7;
+    private javax.swing.JCheckBox B8;
+    private javax.swing.JCheckBox B9;
+    private javax.swing.JCheckBox C1;
+    private javax.swing.JCheckBox C10;
+    private javax.swing.JCheckBox C2;
+    private javax.swing.JCheckBox C3;
+    private javax.swing.JCheckBox C4;
+    private javax.swing.JCheckBox C5;
+    private javax.swing.JCheckBox C6;
+    private javax.swing.JCheckBox C7;
+    private javax.swing.JCheckBox C8;
+    private javax.swing.JCheckBox C9;
+    private javax.swing.JCheckBox D1;
+    private javax.swing.JCheckBox D10;
+    private javax.swing.JCheckBox D2;
+    private javax.swing.JCheckBox D3;
+    private javax.swing.JCheckBox D4;
+    private javax.swing.JCheckBox D5;
+    private javax.swing.JCheckBox D6;
+    private javax.swing.JCheckBox D7;
+    private javax.swing.JCheckBox D8;
+    private javax.swing.JCheckBox D9;
+    private javax.swing.JLabel id_film;
+    private javax.swing.JLabel id_studio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
-    private javax.swing.JCheckBox jCheckBox18;
-    private javax.swing.JCheckBox jCheckBox19;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox20;
-    private javax.swing.JCheckBox jCheckBox21;
-    private javax.swing.JCheckBox jCheckBox22;
-    private javax.swing.JCheckBox jCheckBox23;
-    private javax.swing.JCheckBox jCheckBox24;
-    private javax.swing.JCheckBox jCheckBox25;
-    private javax.swing.JCheckBox jCheckBox26;
-    private javax.swing.JCheckBox jCheckBox27;
-    private javax.swing.JCheckBox jCheckBox28;
-    private javax.swing.JCheckBox jCheckBox29;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox30;
-    private javax.swing.JCheckBox jCheckBox31;
-    private javax.swing.JCheckBox jCheckBox32;
-    private javax.swing.JCheckBox jCheckBox33;
-    private javax.swing.JCheckBox jCheckBox34;
-    private javax.swing.JCheckBox jCheckBox35;
-    private javax.swing.JCheckBox jCheckBox36;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -793,5 +1325,11 @@ public class SeatViewController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JLabel jam_tayang;
+    public javax.swing.JLabel judul_film;
+    public javax.swing.JLabel jumlah_tiket;
+    public javax.swing.JLabel nama_studio;
+    public javax.swing.JLabel tanggal_tayang;
+    public javax.swing.JLabel total_bayar;
     // End of variables declaration//GEN-END:variables
 }
