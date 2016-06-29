@@ -40,8 +40,6 @@ public class BuyTicketViewController extends javax.swing.JFrame {
         connection.getKoneksi();
         stat = connection.getKoneksi().createStatement();
 
-        JudulFilm.addItem("");
-        JamTayang.addItem("");
         tampil_film();
     }
 
@@ -93,6 +91,7 @@ public class BuyTicketViewController extends javax.swing.JFrame {
         jLabel6.setText("Total Bayar");
 
         JudulFilm.setMaximumRowCount(99);
+        JudulFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Film -" }));
         JudulFilm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JudulFilmActionPerformed(evt);
@@ -102,6 +101,7 @@ public class BuyTicketViewController extends javax.swing.JFrame {
         NamaStudio.setEditable(false);
 
         JamTayang.setMaximumRowCount(99);
+        JamTayang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Jam -" }));
         JamTayang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JamTayangActionPerformed(evt);
@@ -131,7 +131,7 @@ public class BuyTicketViewController extends javax.swing.JFrame {
         jLabel1.setText("Pemesanan Tiket");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        TanggalTayang.setMaximumRowCount(99);
+        TanggalTayang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Tanggal -" }));
         TanggalTayang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TanggalTayangActionPerformed(evt);
@@ -157,14 +157,14 @@ public class BuyTicketViewController extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1)
-                            .addComponent(JamTayang, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TanggalTayang, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JudulFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JamTayang, 0, 280, Short.MAX_VALUE)
+                            .addComponent(JudulFilm, 0, 280, Short.MAX_VALUE)
                             .addComponent(NamaStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JumlahTiket, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TotalBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TotalBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TanggalTayang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -208,14 +208,22 @@ public class BuyTicketViewController extends javax.swing.JFrame {
     private void JudulFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JudulFilmActionPerformed
         // TODO add your handling code here:
         String judul_film = JudulFilm.getSelectedItem().toString();
-            try {
-                res = stat.executeQuery("SELECT DISTINCT date FROM tb_film f, tb_jadwal j WHERE f.id_film = j.id_film and f.visible = 'YA' and f.judul_film = '" + judul_film + "' ORDER BY 1 ASC");
-                while (res.next()) {
-                    TanggalTayang.addItem(res.getString("date"));
-                }
-            } catch (Exception e) {
-                System.out.println(e);
+        
+                // Clear All first
+        if (TanggalTayang.getItemCount() > 1) {
+            for (int i = TanggalTayang.getItemCount() - 1; i > 0; i--) {
+                TanggalTayang.removeItemAt(i);
             }
+        }
+        
+        try {
+            res = stat.executeQuery("SELECT DISTINCT date FROM tb_film f, tb_jadwal j WHERE f.id_film = j.id_film and f.visible = 'YA' and f.judul_film = '" + judul_film + "' ORDER BY 1 ASC");
+            while (res.next()) {
+                TanggalTayang.addItem(res.getString("date"));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_JudulFilmActionPerformed
 
     private void JamTayangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JamTayangActionPerformed
@@ -311,8 +319,16 @@ public class BuyTicketViewController extends javax.swing.JFrame {
         // TODO add your handling code here:
         String judul_film = JudulFilm.getSelectedItem().toString();
         String tanggal_tayang = TanggalTayang.getSelectedItem().toString();
+        
+        // Clear All first
+        if (JamTayang.getItemCount() > 1) {
+            for (int i = JamTayang.getItemCount() - 1; i > 0; i--) {
+                JamTayang.removeItemAt(i);
+            }
+        }
+
         try {
-            res = stat.executeQuery("select jam from tb_film f, tb_jadwal j where f.id_film = j.id_film and f.visible = 'YA' and f.judul_film = '" + judul_film + "' and j.date = '" + tanggal_tayang + "'");
+            res = stat.executeQuery("SELECT DISTINCT jam FROM tb_film f, tb_jadwal j WHERE f.id_film = j.id_film and f.visible = 'YA' and f.judul_film = '" + judul_film + "' and j.date = '" + tanggal_tayang + "' ORDER BY 1 ASC");
             while (res.next()) {
                 JamTayang.addItem(res.getString("jam"));
             }
@@ -363,7 +379,7 @@ public class BuyTicketViewController extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JamTayang;
     private javax.swing.JComboBox<String> JudulFilm;
-    private javax.swing.JComboBox<String> JumlahTiket;
+    public javax.swing.JComboBox<String> JumlahTiket;
     private javax.swing.JTextField NamaStudio;
     private javax.swing.JComboBox<String> TanggalTayang;
     private javax.swing.JTextField TotalBayar;

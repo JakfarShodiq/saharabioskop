@@ -40,14 +40,14 @@
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          <Component id="JamTayang" min="-2" pref="280" max="-2" attributes="0"/>
-                          <Component id="TanggalTayang" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
-                          <Component id="JudulFilm" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
+                          <Component id="JamTayang" pref="280" max="32767" attributes="0"/>
+                          <Component id="JudulFilm" alignment="0" pref="280" max="32767" attributes="0"/>
                           <Component id="NamaStudio" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="JumlahTiket" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
                           <Component id="TotalBayar" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TanggalTayang" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -127,7 +127,9 @@
       <Properties>
         <Property name="maximumRowCount" type="int" value="99"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="1">
+            <StringItem index="0" value="- Pilih Film -"/>
+          </StringArray>
         </Property>
       </Properties>
       <Events>
@@ -146,7 +148,9 @@
       <Properties>
         <Property name="maximumRowCount" type="int" value="99"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="1">
+            <StringItem index="0" value="- Pilih Jam -"/>
+          </StringArray>
         </Property>
       </Properties>
       <Events>
@@ -209,6 +213,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
@@ -240,9 +245,10 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="TanggalTayang">
       <Properties>
-        <Property name="maximumRowCount" type="int" value="99"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="1">
+            <StringItem index="0" value="- Pilih Tanggal -"/>
+          </StringArray>
         </Property>
       </Properties>
       <Events>
