@@ -43,7 +43,6 @@ public class UploadViewController extends javax.swing.JFrame {
         folder = System.getProperty("user.dir") + File.separator + "images";
         new File(folder).mkdir();
         
-        
         this.setLocationRelativeTo(null);
         
         KoneksiViewController connection = new KoneksiViewController();
