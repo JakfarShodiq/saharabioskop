@@ -7,12 +7,14 @@ package tiketbioskop;
 
 import com.mysql.jdbc.Connection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -248,6 +250,10 @@ public class DetailTransaksiViewController extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void detProsesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detProsesActionPerformed
+        String folder = System.getProperty("user.dir") + File.separator + "assets";
+        ImageIcon iconSukses = new ImageIcon(folder + "/icon_sukses.png");
+        ImageIcon iconGagal = new ImageIcon(folder + "/icon_gagal.png");
+        
         try {
             // TODO add your handling code here:
             String idTransaksi = id_transaksi.getText();
@@ -262,15 +268,14 @@ public class DetailTransaksiViewController extends javax.swing.JFrame {
                 uangKembali.setText(String.valueOf(uangKembalian));
 
                 stat.executeUpdate("UPDATE `tb_transaksi` SET `jumlah_bayar` = '" + jumlahBayarInt + "', `uang_kembali` = '" + uangKembalian + "' WHERE `tb_transaksi`.`id_transaksi` = " + idTransaksi);
-                JOptionPane.showMessageDialog(null, "Transaksi berhasil disimpan, silahkan upload bukti pembayaran.");
-                
+                JOptionPane.showMessageDialog(null, "Transaksi berhasil disimpan, silahkan upload bukti pembayaran.", "Alert", JOptionPane.INFORMATION_MESSAGE, iconSukses);
                 UploadViewController uploadVC = new UploadViewController();
                 uploadVC.id_transaksi.setText(idTransaksi);
                 uploadVC.setVisible(true);
                 this.dispose();
                 
             } else {
-                JOptionPane.showMessageDialog(null, "Jumlah Bayar harus lebih besar dari Total Bayar!");
+                JOptionPane.showMessageDialog(null, "Jumlah Bayar harus lebih besar dari Total Bayar!", "Alert", JOptionPane.INFORMATION_MESSAGE, iconGagal);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DetailTransaksiViewController.class.getName()).log(Level.SEVERE, null, ex);

@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -200,17 +201,20 @@ public class UploadViewController extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         //System.out.println(dateFormat.format(date));
-        
+        String folder = System.getProperty("user.dir") + File.separator + "assets";
+        ImageIcon iconSukses = new ImageIcon(folder + "/icon_sukses.png");
+        ImageIcon iconGagal = new ImageIcon(folder + "/icon_gagal.png");
         try {
             new CopyFileViewController(jTextField1.getText(), gambar(id_transaksi.getText()));
             //stat.executeQuery("Insert into tb_konfirmasi (id_transaksi, date, filename) values('1', '" + dateFormat.format(date) + "','" + jTextField1.getText() + "')");
             stat.executeUpdate("Insert into tb_konfirmasi (id_transaksi, date) values('" + id_transaksi.getText() + "','" + dateFormat.format(date) + "')");
-            JOptionPane.showMessageDialog(rootPane, "Upload Success");
+            JOptionPane.showMessageDialog(null, "Upload sukses!", "Alert", JOptionPane.INFORMATION_MESSAGE, iconSukses);
             jTextField1.setText("");
             new DashboardViewController().show();
             this.dispose();
             
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Upload gagal!", "Alert", JOptionPane.INFORMATION_MESSAGE, iconGagal);
             JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

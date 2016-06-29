@@ -9,12 +9,14 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import java.awt.Component;
 import java.awt.HeadlessException;
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -29,6 +31,7 @@ public class SeatViewController extends javax.swing.JFrame {
     private final Statement stat;
     private final Connection con;
 
+    ImageIcon iconSukses, iconGagal;
     int idTransaksi;
 
     /**
@@ -53,6 +56,10 @@ public class SeatViewController extends javax.swing.JFrame {
         jumlah_tiket.setVisible(false);
         id_transaksi.setVisible(false);
         pilih_kursi.requestFocus();
+
+        String folder = System.getProperty("user.dir") + File.separator + "assets";
+        iconSukses = new ImageIcon(folder + "/icon_sukses.png");
+        iconGagal = new ImageIcon(folder + "/icon_gagal.png");
     }
 
     /**
@@ -1024,10 +1031,10 @@ public class SeatViewController extends javax.swing.JFrame {
             con.commit();
             con.setAutoCommit(true);
 
-            if (countSeat > jumlahTiket) {
-                JOptionPane.showMessageDialog(null, "Jumlah tempat duduk tidak boleh lebih dari jumlah tiket yang dipesan!!!");
+            if (countSeat != jumlahTiket) {
+                JOptionPane.showMessageDialog(null, "Jumlah tempat duduk yang dipilih harus sama dengan jumlah tiket yang dipesan !!!", "Alert", JOptionPane.INFORMATION_MESSAGE, iconGagal);
             } else {
-                JOptionPane.showMessageDialog(null, "Pilihan tempat duduk berhasil disimpan!");
+                JOptionPane.showMessageDialog(null, "Pilihan tempat duduk berhasil disimpan.", "Alert", JOptionPane.INFORMATION_MESSAGE, iconSukses);
                 // Passing value to DetailTransaksiViewController
                 DetailTransaksiViewController DetailTransaksiVC = new DetailTransaksiViewController();
                 DetailTransaksiVC.id_transaksi.setText(ID_TRANSAKSI);
@@ -1043,7 +1050,7 @@ public class SeatViewController extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Pilihan tempat duduk gagal disimpan!");
+            JOptionPane.showMessageDialog(null, "Pilihan tempat duduk gagal disimpan!", "Alert", JOptionPane.INFORMATION_MESSAGE, iconGagal);
             Logger.getLogger(SeatViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -1236,12 +1243,16 @@ public class SeatViewController extends javax.swing.JFrame {
         D10.setEnabled(true);
 
         String namaStudio = nama_studio.getText();
+        String tanggalTayang = tanggal_tayang.getText();
+        String jamTayang = jam_tayang.getText();
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, namaStudio, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14)));
 
         try {
             // TODO add your handling code here:
             String idJadwal = id_jadwal.getText();
-            res = stat.executeQuery("SELECT dt.no_kursi as no_kursi FROM `tb_det_transaksi` dt, `tb_transaksi` t WHERE dt.id_transaksi = t.id_transaksi and t.id_jadwal = " + idJadwal);
+            res = stat.executeQuery("SELECT dt.no_kursi as no_kursi FROM `tb_det_transaksi` dt, `tb_transaksi` t, `tb_jadwal` j WHERE dt.id_transaksi = t.id_transaksi and t.id_jadwal = j.id_jadwal and j.date = '" + tanggalTayang + "' and j.jam = '" + jamTayang + "' and t.id_jadwal = " + idJadwal);
+            System.out.println("SELECT dt.no_kursi as no_kursi FROM `tb_det_transaksi` dt, `tb_transaksi` t, `tb_jadwal` j WHERE dt.id_transaksi = t.id_transaksi and t.id_jadwal = j.id_jadwal and j.date = '" + tanggalTayang + "' and j.jam = '" + jamTayang + "' and t.id_jadwal = " + idJadwal);
             // Hanlde checkbox status
             while (res.next()) {
                 // Retrive by coloumn name
