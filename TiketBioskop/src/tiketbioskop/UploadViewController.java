@@ -52,6 +52,7 @@ public class UploadViewController extends javax.swing.JFrame {
         
         idUpload.hide();
         jTextField1.requestFocus();
+        id_transaksi.setVisible(false);
     }
     
 
@@ -202,9 +203,9 @@ public class UploadViewController extends javax.swing.JFrame {
         //System.out.println(dateFormat.format(date));
         
         try {
-            new CopyFileViewController(jTextField1.getText(), gambar(idUpload.getText()));
+            new CopyFileViewController(jTextField1.getText(), gambar(id_transaksi.getText()));
             //stat.executeQuery("Insert into tb_konfirmasi (id_transaksi, date, filename) values('1', '" + dateFormat.format(date) + "','" + jTextField1.getText() + "')");
-            stat.executeUpdate("Insert into tb_konfirmasi (id_transaksi, date) values('2', '" + dateFormat.format(date) + "')");
+            stat.executeUpdate("Insert into tb_konfirmasi (id_transaksi, date) values('" + id_transaksi.getText() + "','" + dateFormat.format(date) + "')");
             JOptionPane.showMessageDialog(rootPane, "Upload Success");
             jTextField1.setText("");
             new DashboardViewController().show();
