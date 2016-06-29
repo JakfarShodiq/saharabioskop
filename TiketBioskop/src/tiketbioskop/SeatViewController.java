@@ -7,6 +7,7 @@ package tiketbioskop;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import java.awt.Component;
 import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
@@ -27,6 +29,8 @@ public class SeatViewController extends javax.swing.JFrame {
     private final Statement stat;
     private final Connection con;
 
+    int idTransaksi;
+
     /**
      * Creates new form SeatViewController
      */
@@ -38,185 +42,17 @@ public class SeatViewController extends javax.swing.JFrame {
         connection.getKoneksi();
         stat = connection.getKoneksi().createStatement();
         con = (Connection) connection.getKoneksi();
-        res = stat.executeQuery("select * from tb_det_transaksi where id_transaksi = '" + 1 + "'");
-        try {
-            // TODO add your handling code here:
 
-            // Hanlde checkbox status
-            while (res.next()) {
-                // Retrive by coloumn name
-                int idTransaksi = res.getInt("id_transaksi");
-                String noKursi = res.getString("no_kursi");
-
-                switch (noKursi) {
-                    // Seat A
-                    case "A1":
-                        A1.setSelected(true);
-                        A1.setEnabled(false);
-                        break;
-                    case "A2":
-                        A2.setSelected(true);
-                        A2.setEnabled(false);
-                        break;
-                    case "A3":
-                        A3.setSelected(true);
-                        A3.setEnabled(false);
-                        break;
-                    case "A4":
-                        A4.setSelected(true);
-                        A4.setEnabled(false);
-                        break;
-                    case "A7":
-                        A7.setSelected(true);
-                        A7.setEnabled(false);
-                        break;
-                    case "A8":
-                        A8.setSelected(true);
-                        A8.setEnabled(false);
-                        break;
-                    case "A9":
-                        A9.setSelected(true);
-                        A9.setEnabled(false);
-                        break;
-                    case "A10":
-                        A10.setSelected(true);
-                        A10.setEnabled(false);
-                        break;
-                    // End seat A
-
-                    // Seat B
-                    case "B1":
-                        B1.setSelected(true);
-                        B1.setEnabled(false);
-                        break;
-                    case "B2":
-                        B2.setSelected(true);
-                        B2.setEnabled(false);
-                        break;
-                    case "B3":
-                        B3.setSelected(true);
-                        B3.setEnabled(false);
-                        break;
-                    case "B4":
-                        B4.setSelected(true);
-                        B4.setEnabled(false);
-                        break;
-                    case "B7":
-                        B7.setSelected(true);
-                        B7.setEnabled(false);
-                        break;
-                    case "B8":
-                        B8.setSelected(true);
-                        B8.setEnabled(false);
-                        break;
-                    case "B9":
-                        B9.setSelected(true);
-                        B9.setEnabled(false);
-                        break;
-                    case "B10":
-                        B10.setSelected(true);
-                        B10.setEnabled(false);
-                        break;
-                    // End seat B
-
-                    // Start Seat C
-                    case "C1":
-                        C1.setSelected(true);
-                        C1.setEnabled(false);
-                        break;
-                    case "C2":
-                        C2.setSelected(true);
-                        C2.setEnabled(false);
-                        break;
-                    case "C3":
-                        C3.setSelected(true);
-                        C3.setEnabled(false);
-                        break;
-                    case "C4":
-                        C4.setSelected(true);
-                        C4.setEnabled(false);
-                        break;
-                    case "C5":
-                        C5.setSelected(true);
-                        C5.setEnabled(false);
-                        break;
-                    case "C6":
-                        C6.setSelected(true);
-                        C6.setEnabled(false);
-                        break;
-                    case "C7":
-                        C7.setSelected(true);
-                        C7.setEnabled(false);
-                        break;
-                    case "C8":
-                        C8.setSelected(true);
-                        C8.setEnabled(false);
-                        break;
-                    case "C9":
-                        C9.setSelected(true);
-                        C9.setEnabled(false);
-                        break;
-                    case "C10":
-                        C10.setSelected(true);
-                        C10.setEnabled(false);
-                        break;
-                    // End Seat C
-
-                    // Start Seat D
-                    case "D1":
-                        D1.setSelected(true);
-                        D1.setEnabled(false);
-                        break;
-                    case "D2":
-                        D2.setSelected(true);
-                        D2.setEnabled(false);
-                        break;
-                    case "D3":
-                        D3.setSelected(true);
-                        D3.setEnabled(false);
-                        break;
-                    case "D4":
-                        D4.setSelected(true);
-                        D4.setEnabled(false);
-                        break;
-                    case "D5":
-                        D5.setSelected(true);
-                        D5.setEnabled(false);
-                        break;
-                    case "D6":
-                        D6.setSelected(true);
-                        D6.setEnabled(false);
-                        break;
-                    case "D7":
-                        D7.setSelected(true);
-                        D7.setEnabled(false);
-                        break;
-                    case "D8":
-                        D8.setSelected(true);
-                        D8.setEnabled(false);
-                        break;
-                    case "D9":
-                        D9.setSelected(true);
-                        D9.setEnabled(false);
-                        break;
-                    case "D10":
-                        D10.setSelected(true);
-                        D10.setEnabled(false);
-                        break;
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SeatViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         id_film.setVisible(false);
-        id_studio.setVisible(false);
+        id_jadwal.setVisible(false);
         judul_film.setVisible(false);
         nama_studio.setVisible(false);
         jam_tayang.setVisible(false);
         tanggal_tayang.setVisible(false);
         total_bayar.setVisible(false);
         jumlah_tiket.setVisible(false);
+        id_transaksi.setVisible(false);
+        pilih_kursi.requestFocus();
     }
 
     /**
@@ -274,12 +110,14 @@ public class SeatViewController extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         id_film = new javax.swing.JLabel();
         judul_film = new javax.swing.JLabel();
-        id_studio = new javax.swing.JLabel();
+        id_jadwal = new javax.swing.JLabel();
         jam_tayang = new javax.swing.JLabel();
         nama_studio = new javax.swing.JLabel();
         tanggal_tayang = new javax.swing.JLabel();
         total_bayar = new javax.swing.JLabel();
         jumlah_tiket = new javax.swing.JLabel();
+        id_transaksi = new javax.swing.JLabel();
+        pilih_kursi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -297,6 +135,7 @@ public class SeatViewController extends javax.swing.JFrame {
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
 
         A1.setText("1");
+        A1.setEnabled(false);
         A1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A1ActionPerformed(evt);
@@ -304,6 +143,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         B1.setText("1");
+        B1.setEnabled(false);
         B1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B1ActionPerformed(evt);
@@ -311,6 +151,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C1.setText("1");
+        C1.setEnabled(false);
         C1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C1ActionPerformed(evt);
@@ -318,6 +159,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D1.setText("1");
+        D1.setEnabled(false);
         D1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D1ActionPerformed(evt);
@@ -325,6 +167,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         A2.setText("2");
+        A2.setEnabled(false);
         A2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A2ActionPerformed(evt);
@@ -332,6 +175,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         B2.setText("2");
+        B2.setEnabled(false);
         B2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B2ActionPerformed(evt);
@@ -339,6 +183,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C2.setText("2");
+        C2.setEnabled(false);
         C2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C2ActionPerformed(evt);
@@ -346,6 +191,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D2.setText("2");
+        D2.setEnabled(false);
         D2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D2ActionPerformed(evt);
@@ -353,6 +199,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         A3.setText("3");
+        A3.setEnabled(false);
         A3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A3ActionPerformed(evt);
@@ -360,6 +207,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C3.setText("3");
+        C3.setEnabled(false);
         C3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C3ActionPerformed(evt);
@@ -367,6 +215,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         B3.setText("3");
+        B3.setEnabled(false);
         B3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B3ActionPerformed(evt);
@@ -374,6 +223,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D3.setText("3");
+        D3.setEnabled(false);
         D3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D3ActionPerformed(evt);
@@ -381,6 +231,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         A4.setText("4");
+        A4.setEnabled(false);
         A4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A4ActionPerformed(evt);
@@ -388,6 +239,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         B4.setText("4");
+        B4.setEnabled(false);
         B4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B4ActionPerformed(evt);
@@ -395,6 +247,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C4.setText("4");
+        C4.setEnabled(false);
         C4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C4ActionPerformed(evt);
@@ -402,6 +255,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D4.setText("4");
+        D4.setEnabled(false);
         D4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D4ActionPerformed(evt);
@@ -409,6 +263,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C5.setText("5");
+        C5.setEnabled(false);
         C5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C5ActionPerformed(evt);
@@ -416,6 +271,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D5.setText("5");
+        D5.setEnabled(false);
         D5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D5ActionPerformed(evt);
@@ -423,6 +279,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D6.setText("6");
+        D6.setEnabled(false);
         D6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D6ActionPerformed(evt);
@@ -430,6 +287,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C6.setText("6");
+        C6.setEnabled(false);
         C6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C6ActionPerformed(evt);
@@ -437,6 +295,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         A7.setText("7");
+        A7.setEnabled(false);
         A7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A7ActionPerformed(evt);
@@ -444,6 +303,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         B7.setText("7");
+        B7.setEnabled(false);
         B7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B7ActionPerformed(evt);
@@ -451,6 +311,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C7.setText("7");
+        C7.setEnabled(false);
         C7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C7ActionPerformed(evt);
@@ -458,6 +319,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D7.setText("7");
+        D7.setEnabled(false);
         D7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D7ActionPerformed(evt);
@@ -465,6 +327,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D8.setText("8");
+        D8.setEnabled(false);
         D8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D8ActionPerformed(evt);
@@ -472,6 +335,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C8.setText("8");
+        C8.setEnabled(false);
         C8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C8ActionPerformed(evt);
@@ -479,6 +343,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         B8.setText("8");
+        B8.setEnabled(false);
         B8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B8ActionPerformed(evt);
@@ -486,6 +351,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         A8.setText("8");
+        A8.setEnabled(false);
         A8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A8ActionPerformed(evt);
@@ -493,6 +359,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C9.setText("9");
+        C9.setEnabled(false);
         C9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C9ActionPerformed(evt);
@@ -500,6 +367,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         B9.setText("9");
+        B9.setEnabled(false);
         B9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B9ActionPerformed(evt);
@@ -507,6 +375,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D9.setText("9");
+        D9.setEnabled(false);
         D9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D9ActionPerformed(evt);
@@ -514,6 +383,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         A9.setText("9");
+        A9.setEnabled(false);
         A9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A9ActionPerformed(evt);
@@ -521,6 +391,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         A10.setText("10");
+        A10.setEnabled(false);
         A10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A10ActionPerformed(evt);
@@ -528,6 +399,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         B10.setText("10");
+        B10.setEnabled(false);
         B10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B10ActionPerformed(evt);
@@ -535,6 +407,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         D10.setText("10");
+        D10.setEnabled(false);
         D10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D10ActionPerformed(evt);
@@ -542,6 +415,7 @@ public class SeatViewController extends javax.swing.JFrame {
         });
 
         C10.setText("10");
+        C10.setEnabled(false);
         C10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 C10ActionPerformed(evt);
@@ -740,7 +614,7 @@ public class SeatViewController extends javax.swing.JFrame {
 
         judul_film.setText("Iron Man");
 
-        id_studio.setText("1");
+        id_jadwal.setText("1");
 
         jam_tayang.setText("18:30");
 
@@ -751,6 +625,15 @@ public class SeatViewController extends javax.swing.JFrame {
         total_bayar.setText("100000");
 
         jumlah_tiket.setText("5");
+
+        id_transaksi.setText("99");
+
+        pilih_kursi.setText("Pilih Kursi");
+        pilih_kursi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pilih_kursiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -769,7 +652,7 @@ public class SeatViewController extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(judul_film)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(id_studio)
+                        .addComponent(id_jadwal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nama_studio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -780,319 +663,390 @@ public class SeatViewController extends javax.swing.JFrame {
                         .addComponent(total_bayar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jumlah_tiket)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(id_transaksi)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pilih_kursi)
+                .addGap(247, 247, 247))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pilih_kursi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(id_film)
                     .addComponent(judul_film)
-                    .addComponent(id_studio)
+                    .addComponent(id_jadwal)
                     .addComponent(jam_tayang)
                     .addComponent(nama_studio)
                     .addComponent(tanggal_tayang)
                     .addComponent(total_bayar)
-                    .addComponent(jumlah_tiket))
-                .addContainerGap(8, Short.MAX_VALUE))
+                    .addComponent(jumlah_tiket)
+                    .addComponent(id_transaksi))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    int countCheckedCheckBoxes() {
+        Component[] cs = getRootPane().getComponents();
+        int checkNums = 0;
+        for (Component c : cs) {
+            if (c instanceof JCheckBox) {
+                if (((JCheckBox) c).isSelected()) {
+                    checkNums++;
+                }
+            }
+        }
+        return checkNums;
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String ID_TRANSAKSI = id_transaksi.getText();
+        idTransaksi = Integer.parseInt(ID_TRANSAKSI);
+
+        String JUMLAH_TIKET = jumlah_tiket.getText();
+        int jumlahTiket = Integer.parseInt(JUMLAH_TIKET);
         try {
             con.setAutoCommit(false);
             String insertIntoTable = "INSERT INTO `tb_det_transaksi` (`id_transaksi`, `no_kursi`) VALUES (?, ?)";
             PreparedStatement pstmt = (PreparedStatement) con.prepareStatement(insertIntoTable);
             DefaultListModel listModel = new DefaultListModel();
-            
+
+            int countSeat = 0;
             // Start Seat A
             if (A1.isSelected() && A1.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "A1");
                 pstmt.addBatch();
                 listModel.addElement("A1");
+                countSeat = countSeat + 1;
             }
 
             if (A2.isSelected() && A2.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "A2");
                 pstmt.addBatch();
                 listModel.addElement("A2");
+                countSeat = countSeat + 1;
             }
 
             if (A3.isSelected() && A3.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "A3");
                 pstmt.addBatch();
                 listModel.addElement("A3");
+                countSeat = countSeat + 1;
             }
 
             if (A4.isSelected() && A4.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "A4");
                 pstmt.addBatch();
                 listModel.addElement("A4");
+                countSeat = countSeat + 1;
             }
 
             if (A7.isSelected() && A7.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "A7");
                 pstmt.addBatch();
                 listModel.addElement("A7");
+                countSeat = countSeat + 1;
             }
 
             if (A8.isSelected() && A8.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "A8");
                 pstmt.addBatch();
                 listModel.addElement("A8");
+                countSeat = countSeat + 1;
             }
 
             if (A9.isSelected() && A9.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "A9");
                 pstmt.addBatch();
                 listModel.addElement("A9");
+                countSeat = countSeat + 1;
             }
 
             if (A10.isSelected() && A10.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "A10");
                 pstmt.addBatch();
                 listModel.addElement("A10");
+                countSeat = countSeat + 1;
             }
 
             // Start Seat B
             if (B1.isSelected() && B1.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "B1");
                 pstmt.addBatch();
                 listModel.addElement("B1");
+                countSeat = countSeat + 1;
             }
 
             if (B2.isSelected() && B2.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "B2");
                 pstmt.addBatch();
                 listModel.addElement("B2");
+                countSeat = countSeat + 1;
             }
 
             if (B3.isSelected() && B3.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "B3");
                 pstmt.addBatch();
                 listModel.addElement("B3");
+                countSeat = countSeat + 1;
             }
 
             if (B4.isSelected() && B4.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "B4");
                 pstmt.addBatch();
                 listModel.addElement("B4");
+                countSeat = countSeat + 1;
             }
 
             if (B7.isSelected() && B7.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "B7");
                 pstmt.addBatch();
                 listModel.addElement("B7");
+                countSeat = countSeat + 1;
             }
 
             if (B8.isSelected() && B8.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "B8");
                 pstmt.addBatch();
                 listModel.addElement("B8");
+                countSeat = countSeat + 1;
             }
 
             if (B9.isSelected() && B9.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "B9");
                 pstmt.addBatch();
                 listModel.addElement("B9");
+                countSeat = countSeat + 1;
             }
 
             if (B10.isSelected() && B10.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "B10");
                 pstmt.addBatch();
                 listModel.addElement("B10");
+                countSeat = countSeat + 1;
             }
 
             // Start Seat C
             if (C1.isSelected() && C1.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C1");
                 pstmt.addBatch();
                 listModel.addElement("C1");
+                countSeat = countSeat + 1;
             }
 
             if (C2.isSelected() && C2.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C2");
                 pstmt.addBatch();
                 listModel.addElement("C2");
+                countSeat = countSeat + 1;
             }
 
             if (C3.isSelected() && C3.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C3");
                 pstmt.addBatch();
                 listModel.addElement("C3");
+                countSeat = countSeat + 1;
             }
 
             if (C4.isSelected() && C4.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C4");
                 pstmt.addBatch();
                 listModel.addElement("C4");
+                countSeat = countSeat + 1;
             }
 
             if (C5.isSelected() && C5.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C5");
                 pstmt.addBatch();
                 listModel.addElement("C5");
+                countSeat = countSeat + 1;
             }
 
             if (C6.isSelected() && C6.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C6");
                 pstmt.addBatch();
                 listModel.addElement("C6");
+                countSeat = countSeat + 1;
             }
 
             if (C7.isSelected() && C7.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C7");
                 pstmt.addBatch();
                 listModel.addElement("C7");
+                countSeat = countSeat + 1;
             }
 
             if (C8.isSelected() && C8.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C8");
                 pstmt.addBatch();
                 listModel.addElement("C8");
+                countSeat = countSeat + 1;
             }
 
             if (C9.isSelected() && C9.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C9");
                 pstmt.addBatch();
                 listModel.addElement("C9");
+                countSeat = countSeat + 1;
             }
 
             if (C10.isSelected() && C10.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "C10");
                 pstmt.addBatch();
                 listModel.addElement("C10");
+                countSeat = countSeat + 1;
             }
 
             // Start Seat D
             if (D1.isSelected() && D1.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D1");
                 pstmt.addBatch();
                 listModel.addElement("D1");
+                countSeat = countSeat + 1;
             }
 
             if (D2.isSelected() && D2.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D2");
                 pstmt.addBatch();
                 listModel.addElement("D2");
+                countSeat = countSeat + 1;
             }
 
             if (D3.isSelected() && D3.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D3");
                 pstmt.addBatch();
                 listModel.addElement("D3");
+                countSeat = countSeat + 1;
             }
 
             if (D4.isSelected() && D4.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D4");
                 pstmt.addBatch();
                 listModel.addElement("D4");
+                countSeat = countSeat + 1;
             }
 
             if (D5.isSelected() && D5.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D5");
                 pstmt.addBatch();
                 listModel.addElement("D5");
+                countSeat = countSeat + 1;
             }
 
             if (D6.isSelected() && D6.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D6");
                 pstmt.addBatch();
                 listModel.addElement("D6");
+                countSeat = countSeat + 1;
             }
 
             if (D7.isSelected() && D7.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D7");
                 pstmt.addBatch();
                 listModel.addElement("D7");
+                countSeat = countSeat + 1;
             }
 
             if (D8.isSelected() && D8.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D8");
                 pstmt.addBatch();
                 listModel.addElement("D8");
+                countSeat = countSeat + 1;
             }
 
             if (D9.isSelected() && D9.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D9");
                 pstmt.addBatch();
                 listModel.addElement("D9");
+                countSeat = countSeat + 1;
             }
 
             if (D10.isSelected() && D10.isEnabled()) {
-                pstmt.setInt(1, 1);
+                pstmt.setInt(1, idTransaksi);
                 pstmt.setString(2, "D10");
                 pstmt.addBatch();
                 listModel.addElement("D10");
+                countSeat = countSeat + 1;
             }
 
             int[] updateCounts = pstmt.executeBatch();
             con.commit();
             con.setAutoCommit(true);
 
-            JOptionPane.showMessageDialog(null, "Pilihan tempat duduk berhasil disimpan!");
+            if (countSeat > jumlahTiket) {
+                JOptionPane.showMessageDialog(null, "Jumlah tempat duduk tidak boleh lebih dari jumlah tiket yang dipesan!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Pilihan tempat duduk berhasil disimpan!");
+                // Passing value to DetailTransaksiViewController
+                DetailTransaksiViewController DetailTransaksiVC = new DetailTransaksiViewController();
+                DetailTransaksiVC.id_transaksi.setText(ID_TRANSAKSI);
+                DetailTransaksiVC.judulFilm.setText(this.judul_film.getText());
+                DetailTransaksiVC.namaStudio.setText(this.nama_studio.getText());
+                DetailTransaksiVC.tanggalTayang.setText(this.tanggal_tayang.getText());
+                DetailTransaksiVC.jamTayang.setText(this.jam_tayang.getText());
+                DetailTransaksiVC.jumlahTiket.setText(this.jumlah_tiket.getText());
+                DetailTransaksiVC.totalBayar.setText(this.total_bayar.getText());
+                DetailTransaksiVC.detailKursi.setModel(listModel);
+                DetailTransaksiVC.setVisible(true);
+                this.dispose();
+            }
 
-            // Passing value to DetailTransaksiViewController
-            DetailTransaksiViewController DetailTransaksiVC = new DetailTransaksiViewController();
-            DetailTransaksiVC.judulFilm.setText(this.judul_film.getText());
-            DetailTransaksiVC.namaStudio.setText(this.nama_studio.getText());
-            DetailTransaksiVC.tanggalTayang.setText(this.tanggal_tayang.getText());
-            DetailTransaksiVC.jamTayang.setText(this.jam_tayang.getText());
-            DetailTransaksiVC.jumlahTiket.setText(this.jumlah_tiket.getText());
-            DetailTransaksiVC.totalBayar.setText(this.total_bayar.getText());
-            DetailTransaksiVC.detailKursi.setModel(listModel);
-            DetailTransaksiVC.setVisible(true);
-            this.dispose();
-
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Pilihan tempat duduk berhasil gagal disimpan!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Pilihan tempat duduk gagal disimpan!");
+            Logger.getLogger(SeatViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void C10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C10ActionPerformed
@@ -1239,6 +1193,222 @@ public class SeatViewController extends javax.swing.JFrame {
 
     }//GEN-LAST:event_A1ActionPerformed
 
+    private void pilih_kursiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilih_kursiActionPerformed
+        // TODO add your handling code here:
+        A1.setEnabled(true);
+        A2.setEnabled(true);
+        A3.setEnabled(true);
+        A4.setEnabled(true);
+        A7.setEnabled(true);
+        A8.setEnabled(true);
+        A9.setEnabled(true);
+        A10.setEnabled(true);
+
+        B1.setEnabled(true);
+        B2.setEnabled(true);
+        B3.setEnabled(true);
+        B4.setEnabled(true);
+        B7.setEnabled(true);
+        B8.setEnabled(true);
+        B9.setEnabled(true);
+        B10.setEnabled(true);
+
+        C1.setEnabled(true);
+        C2.setEnabled(true);
+        C3.setEnabled(true);
+        C4.setEnabled(true);
+        C5.setEnabled(true);
+        C6.setEnabled(true);
+        C7.setEnabled(true);
+        C8.setEnabled(true);
+        C9.setEnabled(true);
+        C10.setEnabled(true);
+
+        D1.setEnabled(true);
+        D2.setEnabled(true);
+        D3.setEnabled(true);
+        D4.setEnabled(true);
+        D5.setEnabled(true);
+        D6.setEnabled(true);
+        D7.setEnabled(true);
+        D8.setEnabled(true);
+        D9.setEnabled(true);
+        D10.setEnabled(true);
+
+        String namaStudio = nama_studio.getText();
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, namaStudio, javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 1, 14)));
+
+        try {
+            // TODO add your handling code here:
+            String idJadwal = id_jadwal.getText();
+            res = stat.executeQuery("SELECT dt.no_kursi as no_kursi FROM `tb_det_transaksi` dt, `tb_transaksi` t WHERE dt.id_transaksi = t.id_transaksi and t.id_jadwal = " + idJadwal);
+            // Hanlde checkbox status
+            while (res.next()) {
+                // Retrive by coloumn name
+                String noKursi = res.getString("no_kursi");
+
+                switch (noKursi) {
+                    // Seat A
+                    case "A1":
+                        A1.setSelected(true);
+                        A1.setEnabled(false);
+                        break;
+                    case "A2":
+                        A2.setSelected(true);
+                        A2.setEnabled(false);
+                        break;
+                    case "A3":
+                        A3.setSelected(true);
+                        A3.setEnabled(false);
+                        break;
+                    case "A4":
+                        A4.setSelected(true);
+                        A4.setEnabled(false);
+                        break;
+                    case "A7":
+                        A7.setSelected(true);
+                        A7.setEnabled(false);
+                        break;
+                    case "A8":
+                        A8.setSelected(true);
+                        A8.setEnabled(false);
+                        break;
+                    case "A9":
+                        A9.setSelected(true);
+                        A9.setEnabled(false);
+                        break;
+                    case "A10":
+                        A10.setSelected(true);
+                        A10.setEnabled(false);
+                        break;
+                    // End seat A
+
+                    // Seat B
+                    case "B1":
+                        B1.setSelected(true);
+                        B1.setEnabled(false);
+                        break;
+                    case "B2":
+                        B2.setSelected(true);
+                        B2.setEnabled(false);
+                        break;
+                    case "B3":
+                        B3.setSelected(true);
+                        B3.setEnabled(false);
+                        break;
+                    case "B4":
+                        B4.setSelected(true);
+                        B4.setEnabled(false);
+                        break;
+                    case "B7":
+                        B7.setSelected(true);
+                        B7.setEnabled(false);
+                        break;
+                    case "B8":
+                        B8.setSelected(true);
+                        B8.setEnabled(false);
+                        break;
+                    case "B9":
+                        B9.setSelected(true);
+                        B9.setEnabled(false);
+                        break;
+                    case "B10":
+                        B10.setSelected(true);
+                        B10.setEnabled(false);
+                        break;
+                    // End seat B
+
+                    // Start Seat C
+                    case "C1":
+                        C1.setSelected(true);
+                        C1.setEnabled(false);
+                        break;
+                    case "C2":
+                        C2.setSelected(true);
+                        C2.setEnabled(false);
+                        break;
+                    case "C3":
+                        C3.setSelected(true);
+                        C3.setEnabled(false);
+                        break;
+                    case "C4":
+                        C4.setSelected(true);
+                        C4.setEnabled(false);
+                        break;
+                    case "C5":
+                        C5.setSelected(true);
+                        C5.setEnabled(false);
+                        break;
+                    case "C6":
+                        C6.setSelected(true);
+                        C6.setEnabled(false);
+                        break;
+                    case "C7":
+                        C7.setSelected(true);
+                        C7.setEnabled(false);
+                        break;
+                    case "C8":
+                        C8.setSelected(true);
+                        C8.setEnabled(false);
+                        break;
+                    case "C9":
+                        C9.setSelected(true);
+                        C9.setEnabled(false);
+                        break;
+                    case "C10":
+                        C10.setSelected(true);
+                        C10.setEnabled(false);
+                        break;
+                    // End Seat C
+
+                    // Start Seat D
+                    case "D1":
+                        D1.setSelected(true);
+                        D1.setEnabled(false);
+                        break;
+                    case "D2":
+                        D2.setSelected(true);
+                        D2.setEnabled(false);
+                        break;
+                    case "D3":
+                        D3.setSelected(true);
+                        D3.setEnabled(false);
+                        break;
+                    case "D4":
+                        D4.setSelected(true);
+                        D4.setEnabled(false);
+                        break;
+                    case "D5":
+                        D5.setSelected(true);
+                        D5.setEnabled(false);
+                        break;
+                    case "D6":
+                        D6.setSelected(true);
+                        D6.setEnabled(false);
+                        break;
+                    case "D7":
+                        D7.setSelected(true);
+                        D7.setEnabled(false);
+                        break;
+                    case "D8":
+                        D8.setSelected(true);
+                        D8.setEnabled(false);
+                        break;
+                    case "D9":
+                        D9.setSelected(true);
+                        D9.setEnabled(false);
+                        break;
+                    case "D10":
+                        D10.setSelected(true);
+                        D10.setEnabled(false);
+                        break;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SeatViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_pilih_kursiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1316,7 +1486,8 @@ public class SeatViewController extends javax.swing.JFrame {
     private javax.swing.JCheckBox D8;
     private javax.swing.JCheckBox D9;
     private javax.swing.JLabel id_film;
-    private javax.swing.JLabel id_studio;
+    public javax.swing.JLabel id_jadwal;
+    public javax.swing.JLabel id_transaksi;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1329,6 +1500,7 @@ public class SeatViewController extends javax.swing.JFrame {
     public javax.swing.JLabel judul_film;
     public javax.swing.JLabel jumlah_tiket;
     public javax.swing.JLabel nama_studio;
+    private javax.swing.JButton pilih_kursi;
     public javax.swing.JLabel tanggal_tayang;
     public javax.swing.JLabel total_bayar;
     // End of variables declaration//GEN-END:variables

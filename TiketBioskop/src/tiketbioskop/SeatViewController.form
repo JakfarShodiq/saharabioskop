@@ -7,7 +7,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -38,7 +38,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="judul_film" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="id_studio" min="-2" max="-2" attributes="0"/>
+                      <Component id="id_jadwal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nama_studio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -49,11 +49,18 @@
                       <Component id="total_bayar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jumlah_tiket" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="id_transaksi" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="pilih_kursi" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,21 +69,24 @@
           <Group type="102" attributes="0">
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="pilih_kursi" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="id_film" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="judul_film" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="id_studio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="id_jadwal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jam_tayang" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nama_studio" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tanggal_tayang" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="total_bayar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jumlah_tiket" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="id_transaksi" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -340,6 +350,7 @@
         <Component class="javax.swing.JCheckBox" name="A1">
           <Properties>
             <Property name="text" type="java.lang.String" value="1"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A1ActionPerformed"/>
@@ -348,6 +359,7 @@
         <Component class="javax.swing.JCheckBox" name="B1">
           <Properties>
             <Property name="text" type="java.lang.String" value="1"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B1ActionPerformed"/>
@@ -356,6 +368,7 @@
         <Component class="javax.swing.JCheckBox" name="C1">
           <Properties>
             <Property name="text" type="java.lang.String" value="1"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C1ActionPerformed"/>
@@ -364,6 +377,7 @@
         <Component class="javax.swing.JCheckBox" name="D1">
           <Properties>
             <Property name="text" type="java.lang.String" value="1"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D1ActionPerformed"/>
@@ -372,6 +386,7 @@
         <Component class="javax.swing.JCheckBox" name="A2">
           <Properties>
             <Property name="text" type="java.lang.String" value="2"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A2ActionPerformed"/>
@@ -380,6 +395,7 @@
         <Component class="javax.swing.JCheckBox" name="B2">
           <Properties>
             <Property name="text" type="java.lang.String" value="2"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B2ActionPerformed"/>
@@ -388,6 +404,7 @@
         <Component class="javax.swing.JCheckBox" name="C2">
           <Properties>
             <Property name="text" type="java.lang.String" value="2"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C2ActionPerformed"/>
@@ -396,6 +413,7 @@
         <Component class="javax.swing.JCheckBox" name="D2">
           <Properties>
             <Property name="text" type="java.lang.String" value="2"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D2ActionPerformed"/>
@@ -404,6 +422,7 @@
         <Component class="javax.swing.JCheckBox" name="A3">
           <Properties>
             <Property name="text" type="java.lang.String" value="3"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A3ActionPerformed"/>
@@ -412,6 +431,7 @@
         <Component class="javax.swing.JCheckBox" name="C3">
           <Properties>
             <Property name="text" type="java.lang.String" value="3"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C3ActionPerformed"/>
@@ -420,6 +440,7 @@
         <Component class="javax.swing.JCheckBox" name="B3">
           <Properties>
             <Property name="text" type="java.lang.String" value="3"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B3ActionPerformed"/>
@@ -428,6 +449,7 @@
         <Component class="javax.swing.JCheckBox" name="D3">
           <Properties>
             <Property name="text" type="java.lang.String" value="3"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D3ActionPerformed"/>
@@ -436,6 +458,7 @@
         <Component class="javax.swing.JCheckBox" name="A4">
           <Properties>
             <Property name="text" type="java.lang.String" value="4"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A4ActionPerformed"/>
@@ -444,6 +467,7 @@
         <Component class="javax.swing.JCheckBox" name="B4">
           <Properties>
             <Property name="text" type="java.lang.String" value="4"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B4ActionPerformed"/>
@@ -452,6 +476,7 @@
         <Component class="javax.swing.JCheckBox" name="C4">
           <Properties>
             <Property name="text" type="java.lang.String" value="4"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C4ActionPerformed"/>
@@ -460,6 +485,7 @@
         <Component class="javax.swing.JCheckBox" name="D4">
           <Properties>
             <Property name="text" type="java.lang.String" value="4"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D4ActionPerformed"/>
@@ -468,6 +494,7 @@
         <Component class="javax.swing.JCheckBox" name="C5">
           <Properties>
             <Property name="text" type="java.lang.String" value="5"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C5ActionPerformed"/>
@@ -476,6 +503,7 @@
         <Component class="javax.swing.JCheckBox" name="D5">
           <Properties>
             <Property name="text" type="java.lang.String" value="5"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D5ActionPerformed"/>
@@ -484,6 +512,7 @@
         <Component class="javax.swing.JCheckBox" name="D6">
           <Properties>
             <Property name="text" type="java.lang.String" value="6"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D6ActionPerformed"/>
@@ -492,6 +521,7 @@
         <Component class="javax.swing.JCheckBox" name="C6">
           <Properties>
             <Property name="text" type="java.lang.String" value="6"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C6ActionPerformed"/>
@@ -500,6 +530,7 @@
         <Component class="javax.swing.JCheckBox" name="A7">
           <Properties>
             <Property name="text" type="java.lang.String" value="7"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A7ActionPerformed"/>
@@ -508,6 +539,7 @@
         <Component class="javax.swing.JCheckBox" name="B7">
           <Properties>
             <Property name="text" type="java.lang.String" value="7"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B7ActionPerformed"/>
@@ -516,6 +548,7 @@
         <Component class="javax.swing.JCheckBox" name="C7">
           <Properties>
             <Property name="text" type="java.lang.String" value="7"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C7ActionPerformed"/>
@@ -524,6 +557,7 @@
         <Component class="javax.swing.JCheckBox" name="D7">
           <Properties>
             <Property name="text" type="java.lang.String" value="7"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D7ActionPerformed"/>
@@ -532,6 +566,7 @@
         <Component class="javax.swing.JCheckBox" name="D8">
           <Properties>
             <Property name="text" type="java.lang.String" value="8"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D8ActionPerformed"/>
@@ -540,6 +575,7 @@
         <Component class="javax.swing.JCheckBox" name="C8">
           <Properties>
             <Property name="text" type="java.lang.String" value="8"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C8ActionPerformed"/>
@@ -548,6 +584,7 @@
         <Component class="javax.swing.JCheckBox" name="B8">
           <Properties>
             <Property name="text" type="java.lang.String" value="8"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B8ActionPerformed"/>
@@ -556,6 +593,7 @@
         <Component class="javax.swing.JCheckBox" name="A8">
           <Properties>
             <Property name="text" type="java.lang.String" value="8"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A8ActionPerformed"/>
@@ -564,6 +602,7 @@
         <Component class="javax.swing.JCheckBox" name="C9">
           <Properties>
             <Property name="text" type="java.lang.String" value="9"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C9ActionPerformed"/>
@@ -572,6 +611,7 @@
         <Component class="javax.swing.JCheckBox" name="B9">
           <Properties>
             <Property name="text" type="java.lang.String" value="9"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B9ActionPerformed"/>
@@ -580,6 +620,7 @@
         <Component class="javax.swing.JCheckBox" name="D9">
           <Properties>
             <Property name="text" type="java.lang.String" value="9"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D9ActionPerformed"/>
@@ -588,6 +629,7 @@
         <Component class="javax.swing.JCheckBox" name="A9">
           <Properties>
             <Property name="text" type="java.lang.String" value="9"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A9ActionPerformed"/>
@@ -596,6 +638,7 @@
         <Component class="javax.swing.JCheckBox" name="A10">
           <Properties>
             <Property name="text" type="java.lang.String" value="10"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A10ActionPerformed"/>
@@ -604,6 +647,7 @@
         <Component class="javax.swing.JCheckBox" name="B10">
           <Properties>
             <Property name="text" type="java.lang.String" value="10"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B10ActionPerformed"/>
@@ -612,6 +656,7 @@
         <Component class="javax.swing.JCheckBox" name="D10">
           <Properties>
             <Property name="text" type="java.lang.String" value="10"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="D10ActionPerformed"/>
@@ -620,6 +665,7 @@
         <Component class="javax.swing.JCheckBox" name="C10">
           <Properties>
             <Property name="text" type="java.lang.String" value="10"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="C10ActionPerformed"/>
@@ -668,10 +714,13 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="id_studio">
+    <Component class="javax.swing.JLabel" name="id_jadwal">
       <Properties>
         <Property name="text" type="java.lang.String" value="1"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jam_tayang">
       <Properties>
@@ -712,6 +761,22 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="id_transaksi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="99"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="pilih_kursi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pilih Kursi"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pilih_kursiActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
