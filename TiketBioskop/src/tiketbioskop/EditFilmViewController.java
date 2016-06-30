@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ATI-Dhio
  */
-public class UpdateFilmViewController extends javax.swing.JFrame {
+public class EditFilmViewController extends javax.swing.JFrame {
     
     private ResultSet res;
     private Statement stat;
@@ -25,7 +25,7 @@ public class UpdateFilmViewController extends javax.swing.JFrame {
     /**
      * Creates new form UpdateFilmViewController
      */
-    public UpdateFilmViewController() throws SQLException {
+    public EditFilmViewController() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         KoneksiViewController connection = new KoneksiViewController();
@@ -50,7 +50,7 @@ public class UpdateFilmViewController extends javax.swing.JFrame {
             }
             jTable2.setModel(isi);
         } catch (SQLException ex) {
-            Logger.getLogger(UpdateFilmViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditFilmViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -225,7 +225,7 @@ public class UpdateFilmViewController extends javax.swing.JFrame {
             bersih();
             
         } catch (SQLException ex) {
-            Logger.getLogger(UpdateFilmViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditFilmViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -252,23 +252,24 @@ public class UpdateFilmViewController extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UpdateFilmViewController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditFilmViewController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UpdateFilmViewController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditFilmViewController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UpdateFilmViewController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditFilmViewController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UpdateFilmViewController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditFilmViewController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new UpdateFilmViewController().setVisible(true);
+                    new EditFilmViewController().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(UpdateFilmViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EditFilmViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
