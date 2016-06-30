@@ -210,9 +210,9 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1)
-                        .addGap(136, 136, 136)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(165, 165, 165)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,6 +261,27 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
         String jam = jComboBox3.getSelectedItem().toString();
         String harga = jComboBox4.getSelectedItem().toString();
         
+        String judul_film = jComboBox1.getSelectedItem().toString();
+        try {
+            res = stat.executeQuery("select id_film from tb_film where judul_film="+"'"+judul_film+"'");
+            while(res.next()){
+                id_film = res.getString("id_film");                
+            }            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        // TODO add your handling code here:
+        String nama_studio = jComboBox2.getSelectedItem().toString();
+        try {
+            res = stat.executeQuery("select id_studio from tb_studio where nama_studio="+"'"+nama_studio+"'");
+            while(res.next()){
+                id_studio = res.getString("id_studio");                
+            }            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
         try {
            
             //System.out.println(dataIdFilm);
@@ -280,28 +301,11 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        String judul_film = jComboBox1.getSelectedItem().toString();
-        try {
-            res = stat.executeQuery("select id_film from tb_film where judul_film="+"'"+judul_film+"'");
-            while(res.next()){
-                id_film = res.getString("id_film");                
-            }            
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-        String nama_studio = jComboBox2.getSelectedItem().toString();
-        try {
-            res = stat.executeQuery("select id_studio from tb_studio where nama_studio="+"'"+nama_studio+"'");
-            while(res.next()){
-                id_studio = res.getString("id_studio");                
-            }            
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+        
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
