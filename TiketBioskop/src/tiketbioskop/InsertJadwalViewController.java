@@ -153,6 +153,7 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
 
         jLabel2.setText("Judul Film");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Film -" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -161,6 +162,8 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
 
         jLabel3.setText("Studio");
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Studio -" }));
+        jComboBox2.setToolTipText("");
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -200,7 +203,6 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -213,6 +215,10 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
                         .addGap(165, 165, 165)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(365, 365, 365)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,6 +266,7 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
         tanggal = jCalendar1.getDate();
         String jam = jComboBox3.getSelectedItem().toString();
         String harga = jComboBox4.getSelectedItem().toString();
+        
         
         String judul_film = jComboBox1.getSelectedItem().toString();
         try {

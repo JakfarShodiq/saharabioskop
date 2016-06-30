@@ -24,22 +24,37 @@ public class EditJadwalViewController extends javax.swing.JFrame {
     private Connection conn;
     private ResultSet res;
     private Statement stat;
-    
+        
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     java.util.Date tanggal;   
     
-    String id_studio, id_film;
+    String id_studio, id_film, idJadwal;
+     
     /**
      * Creates new form InsertJadwalViewController
      */
     public EditJadwalViewController() {
         initComponents();
+        this.setLocationRelativeTo(null);
         koneksi();
         dataJadwal();
-        tampilStudio();
-        tampilFilm();
-    }
+        tampilIdJadwal();
 
+    }
+    
+    private void tampilIdJadwal(){
+    try {
+        res = stat.executeQuery("select id_jadwal from tb_jadwal");
+        while(res.next()){
+            //System.out.println(res.next());
+                jComboBox5.addItem(res.getString("id_jadwal"));
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }
+    
      private void koneksi(){
         try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -74,41 +89,6 @@ public class EditJadwalViewController extends javax.swing.JFrame {
         }
     }
     
-    private void tampilStudio(){
-        try {
-        res = stat.executeQuery("select nama_studio from tb_studio ");
-        while(res.next()){
-            //System.out.println(res.next());
-                jComboBox2.addItem(res.getString("nama_studio"));
-            }
-        } catch (Exception e){
-            
-        }
-    }
-    
-    private void tampilFilm(){
-        try {
-        res = stat.executeQuery("select judul_film from tb_film ");
-        while(res.next()){
-            //System.out.println(res.next());
-                jComboBox1.addItem(res.getString("judul_film"));
-            }
-        } catch (Exception e){
-            
-        }
-    }
-    
-    private void tampilJam(){
-        try {
-        res = stat.executeQuery("select judul_film from tb_film ");
-        while(res.next()){
-            //System.out.println(res.next());
-                jComboBox2.addItem(res.getString("judul_film"));
-            }
-        } catch (Exception e){
-            
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,6 +112,8 @@ public class EditJadwalViewController extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jCalendar1 = new com.toedter.calendar.JCalendar();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,6 +135,7 @@ public class EditJadwalViewController extends javax.swing.JFrame {
 
         jLabel2.setText("Judul Film");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Film -" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -161,6 +144,7 @@ public class EditJadwalViewController extends javax.swing.JFrame {
 
         jLabel3.setText("Studio");
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Studio -" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -184,6 +168,15 @@ public class EditJadwalViewController extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Pilih ID");
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih ID -" }));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,7 +190,8 @@ public class EditJadwalViewController extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -205,25 +199,31 @@ public class EditJadwalViewController extends javax.swing.JFrame {
                             .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox4, 0, 269, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel1)))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addGap(136, 136, 136)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(352, 352, 352))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,18 +237,16 @@ public class EditJadwalViewController extends javax.swing.JFrame {
                             .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))))
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(246, 246, 246))
+                        .addGap(188, 188, 188))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -262,39 +260,8 @@ public class EditJadwalViewController extends javax.swing.JFrame {
         tanggal = jCalendar1.getDate();
         String jam = jComboBox3.getSelectedItem().toString();
         String harga = jComboBox4.getSelectedItem().toString();
+        idJadwal = jComboBox5.getSelectedItem().toString();
         
-        try {
-           
-            //System.out.println(dataIdFilm);
-            //System.out.println(dataIdStudio);
-            stat.executeUpdate("insert into tb_jadwal (id_film,id_studio,jam,date,harga) values ("
-                    + ""+"'"+id_film+"',"
-                    + ""+"'"+id_studio+"',"
-                    + ""+"'"+jam+"',"
-                    + ""+"'"+dateFormat.format(tanggal)+"',"
-                    + ""+"'"+harga+"')");
-            JOptionPane.showMessageDialog(null, "Berhasil menambahkan Jadwal.");
-            dataJadwal();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Gagal menambahkan Jadwal "+e);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        String judul_film = jComboBox1.getSelectedItem().toString();
-        try {
-            res = stat.executeQuery("select id_film from tb_film where judul_film="+"'"+judul_film+"'");
-            while(res.next()){
-                id_film = res.getString("id_film");                
-            }            
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
         String nama_studio = jComboBox2.getSelectedItem().toString();
         try {
             res = stat.executeQuery("select id_studio from tb_studio where nama_studio="+"'"+nama_studio+"'");
@@ -304,8 +271,87 @@ public class EditJadwalViewController extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        
+        String judul_film = jComboBox1.getSelectedItem().toString();
+        try {
+            res = stat.executeQuery("select id_film from tb_film where judul_film="+"'"+judul_film+"'");
+            while(res.next()){
+                id_film = res.getString("id_film");                
+            }            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        try {
+           
+            //System.out.println(dataIdFilm);
+            //System.out.println(dataIdStudio);
+            stat.executeUpdate("update tb_jadwal set "
+                    + "jam="+"'"+jam+"',"
+                    + "date="+"'"+dateFormat.format(tanggal)+"',"
+                    + "harga="+"'"+harga+"'"
+                    + "where id_jadwal="+"'"+idJadwal+"'");
+            JOptionPane.showMessageDialog(null, "Berhasil Melakukan Edit Jadwal.");
+            dataJadwal();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal Melakukan Edit Jadwal "+e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        idJadwal = jComboBox5.getSelectedItem().toString();
+        // Clear All first
+        if (jComboBox2.getItemCount() > 1) {
+            for (int i = jComboBox2.getItemCount() - 1; i > 0; i--) {
+                jComboBox2.removeItemAt(i);
+            }
+        }
+        try {
+        res = stat.executeQuery("select ts.nama_studio as nama_studio from tb_studio ts, tb_jadwal tj\n" +
+        "where ts.id_studio=tj.id_studio and\n" +
+        "tj.id_jadwal="+"'"+idJadwal+"';");
+                //+ "tj.id_jadwal="+"'"+idJadwal+"';");
+        while(res.next()){
+            //System.out.println(res.next());
+                jComboBox2.addItem(res.getString("nama_studio"));
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+      
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+        idJadwal = jComboBox5.getSelectedItem().toString();
+        
+        if (jComboBox1.getItemCount() > 1) {
+            for (int i = jComboBox1.getItemCount() - 1; i > 0; i--) {
+                jComboBox1.removeItemAt(i);
+            }
+        }
+
+        try {
+        res = stat.executeQuery("select tf.judul_film as judul_film from tb_film tf, tb_jadwal tj\n" +
+        "where tf.id_film=tj.id_film and\n" +
+        "tj.id_jadwal="+"'"+idJadwal+"';");
+        while(res.next()){
+            //System.out.println(res.next());
+                jComboBox1.addItem(res.getString("judul_film"));
+            }
+        } catch (Exception e){
+            
+        }
+        
+    }//GEN-LAST:event_jComboBox5ActionPerformed
+
+   
     /**
      * @param args the command line arguments
      */
@@ -349,12 +395,14 @@ public class EditJadwalViewController extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
