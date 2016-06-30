@@ -30,6 +30,7 @@ public class ReportViewController extends javax.swing.JFrame {
         initComponents();
         koneksi();
         thisDayReport();
+        this.setTitle("xixixi Bioskop");
     }
 
     private void koneksi() {

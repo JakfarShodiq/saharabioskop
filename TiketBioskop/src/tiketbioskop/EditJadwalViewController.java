@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -29,17 +30,17 @@ public class EditJadwalViewController extends javax.swing.JFrame {
     java.util.Date tanggal;   
     
     String id_studio, id_film, idJadwal;
-     
+    
     /**
      * Creates new form InsertJadwalViewController
-     */
+     */ 
     public EditJadwalViewController() {
         initComponents();
         this.setLocationRelativeTo(null);
         koneksi();
         dataJadwal();
         tampilIdJadwal();
-
+        this.setTitle("xixixi Bioskop");
     }
     
     private void tampilIdJadwal(){

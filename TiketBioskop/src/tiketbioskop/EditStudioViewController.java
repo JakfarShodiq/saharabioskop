@@ -35,6 +35,7 @@ public class EditStudioViewController extends javax.swing.JFrame {
         bersih();       
         tampil_studio();
         dataStudio();
+        this.setTitle("xixixi Bioskop");
     }
 
     private void koneksi(){

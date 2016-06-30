@@ -32,6 +32,7 @@ public class InsertStudioViewController extends javax.swing.JFrame {
         koneksi();
         bersih();
         dataStudio();
+        this.setTitle("xixixi Bioskop");
     }
     
     private void koneksi(){

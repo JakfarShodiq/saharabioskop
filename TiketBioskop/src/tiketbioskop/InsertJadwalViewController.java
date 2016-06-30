@@ -38,6 +38,7 @@ public class InsertJadwalViewController extends javax.swing.JFrame {
         dataJadwal();
         tampilStudio();
         tampilFilm();
+        this.setTitle("xixixi Bioskop");
     }
 
      private void koneksi(){
