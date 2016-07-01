@@ -32,6 +32,7 @@ public class ReportViewController extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         koneksi();
         thisDayReport();
+        this.setTitle("xixixi Bioskop");
     }
 
     private void koneksi() {
