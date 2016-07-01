@@ -26,7 +26,7 @@ public class LoginViewController extends javax.swing.JFrame {
      */
     public LoginViewController() throws SQLException {
         initComponents();
-        this.setTitle("Sahara Bioskop");
+        this.setTitle("xixixi Bioskop");
         this.setLocationRelativeTo(null);
         KoneksiViewController connection = new KoneksiViewController();
         connection.getKoneksi();

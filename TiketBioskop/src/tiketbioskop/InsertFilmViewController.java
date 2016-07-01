@@ -27,6 +27,7 @@ public class InsertFilmViewController extends javax.swing.JFrame {
      */
     public InsertFilmViewController() throws SQLException {
         initComponents();
+        this.setTitle("xixixi Bioskop");
         this.setLocationRelativeTo(null);
         KoneksiViewController connection = new KoneksiViewController();
         connection.getKoneksi();

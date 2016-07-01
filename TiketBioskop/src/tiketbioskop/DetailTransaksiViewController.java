@@ -34,7 +34,7 @@ public class DetailTransaksiViewController extends javax.swing.JFrame {
      */
     public DetailTransaksiViewController() throws SQLException {
         initComponents();
-        this.setTitle("Sahara Bioskop");
+        this.setTitle("xixixi Bioskop");
         this.setLocationRelativeTo(null);
         jumlahBayar.requestFocus();
 

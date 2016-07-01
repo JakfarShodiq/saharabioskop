@@ -39,7 +39,7 @@ public class UploadViewController extends javax.swing.JFrame {
      */
     public UploadViewController() throws SQLException {
         initComponents();
-        this.setTitle("Sahara Bioskop");
+        this.setTitle("xixixi Bioskop");
         
         folder = System.getProperty("user.dir") + File.separator + "images";
         new File(folder).mkdir();

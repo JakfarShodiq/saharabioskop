@@ -30,6 +30,7 @@ public class EditStudioViewController extends javax.swing.JFrame {
      */
     public EditStudioViewController() {
         initComponents();
+        this.setTitle("xixixi Bioskop");
         this.setLocationRelativeTo(null);
         koneksi();
         bersih();       

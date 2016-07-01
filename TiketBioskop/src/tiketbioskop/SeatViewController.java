@@ -39,7 +39,7 @@ public class SeatViewController extends javax.swing.JFrame {
      */
     public SeatViewController() throws SQLException {
         initComponents();
-        this.setTitle("Sahara Bioskop");
+        this.setTitle("xixixi Bioskop");
         this.setLocationRelativeTo(null);
         KoneksiViewController connection = new KoneksiViewController();
         connection.getKoneksi();

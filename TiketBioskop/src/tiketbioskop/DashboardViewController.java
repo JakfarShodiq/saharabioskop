@@ -23,7 +23,7 @@ public class DashboardViewController extends javax.swing.JFrame {
      */
     public DashboardViewController() {
         initComponents();
-        this.setTitle("Sahara Bioskop");
+        this.setTitle("xixixi Bioskop");
         this.setLocationRelativeTo(null);
     }
 

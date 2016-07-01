@@ -35,6 +35,7 @@ public class EditJadwalViewController extends javax.swing.JFrame {
      */
     public EditJadwalViewController() {
         initComponents();
+        this.setTitle("xixixi Bioskop");
         this.setLocationRelativeTo(null);
         koneksi();
         dataJadwal();

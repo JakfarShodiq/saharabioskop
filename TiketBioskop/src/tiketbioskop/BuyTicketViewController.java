@@ -35,6 +35,7 @@ public class BuyTicketViewController extends javax.swing.JFrame {
      */
     public BuyTicketViewController() throws SQLException {
         initComponents();
+        this.setTitle("xixixi Bioskop");
         this.setLocationRelativeTo(null);
         KoneksiViewController connection = new KoneksiViewController();
         connection.getKoneksi();

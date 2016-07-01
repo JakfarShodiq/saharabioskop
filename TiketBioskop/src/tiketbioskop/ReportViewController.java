@@ -28,6 +28,8 @@ public class ReportViewController extends javax.swing.JFrame {
      */
     public ReportViewController() {
         initComponents();
+        this.setTitle("xixixi Bioskop");
+        this.setLocationRelativeTo(null);
         koneksi();
         thisDayReport();
     }
